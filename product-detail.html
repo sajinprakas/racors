@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>14″ Dewatering Pump with Frame | Racors</title>
+  <link rel="icon" href="assets/images/favicon.png">
+  <!-- Mark JS as available before first paint (enables loader + animations without a flash) -->
+  <script>document.documentElement.classList.replace("no-js", "js"); document.documentElement.classList.add("is-loading");</script>
+
+  <!-- Fonts + vendor CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/swiper@14.4.0/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- App CSS -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body data-page="product-detail">
+
+<!-- ================= COMPONENT: Page loader =================
+     Shown until the page (images, fonts) has loaded, then slides away.
+     Hidden automatically without JavaScript. -->
+<div class="rc-preloader" id="rcPreloader" role="status" aria-live="polite">
+  <div class="rc-preloader__inner">
+    <img src="assets/images/logo-white.png" alt="" width="186" height="59" class="rc-preloader__logo">
+    <div class="rc-preloader__bar" aria-hidden="true"><span id="rcPreloaderBar"></span></div>
+    <span class="visually-hidden">Loading…</span>
+  </div>
+</div>
+
+<!-- ================= LAYOUT: Header / main navigation ================= -->
+<a class="visually-hidden-focusable rc-skip" href="#main">Skip to content</a>
+
+<header class="rc-header" id="top" data-component="header">
+  <nav class="navbar navbar-expand-xl" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand rc-brand" href="index.html">
+        <img src="assets/images/logo-white.png" alt="Racors" width="186" height="59">
+      </a>
+
+      <button class="navbar-toggler rc-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#rcMenu" aria-controls="rcMenu" aria-label="Open menu">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="offcanvas offcanvas-end rc-offcanvas" tabindex="-1" id="rcMenu" data-lenis-prevent aria-labelledby="rcMenuLabel">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h6 mb-0" id="rcMenuLabel">Menu</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body align-items-xl-center">
+          <!-- BACKEND: menu items can come from a CMS menu; mark the current page with .active + aria-current="page" -->
+          <ul class="navbar-nav ms-xl-auto rc-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" aria-current="page" href="products.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+              <ul class="dropdown-menu rc-dropdown">
+                <li><a class="dropdown-item" href="products.html">Dewatering Pumps</a></li>
+                <li><a class="dropdown-item" href="products.html">Submersible Pumps</a></li>
+                <li><a class="dropdown-item" href="products.html">Spares</a></li>
+                <li><a class="dropdown-item" href="products.html">Fittings &amp; Hoses</a></li>
+                <li><a class="dropdown-item" href="products.html">Gensets &amp; Towerlights</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="industries.html">Industries</a></li>
+            <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="/instock">Instock</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="/blogs">Blogs</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle rc-lang" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="rc-flag" aria-hidden="true">🇺🇸</span> Eng
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end rc-dropdown">
+                <li><a class="dropdown-item" href="?lang=en">English</a></li>
+                <li><a class="dropdown-item" href="?lang=ar">العربية</a></li>
+              </ul>
+            </li>
+          </ul>
+          <button type="button" class="btn rc-btn rc-btn-white ms-xl-3 mt-3 mt-xl-0"
+                  data-bs-toggle="modal" data-bs-target="#enquiryModal" data-enquiry-type="general">Send Enquiry</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- ================= SECTION: Product detail – top =================
+       DYNAMIC (table: products + related tables). Fields marked with data-field.
+         LOOP product.images   -> gallery thumbs (data-full = large image URL); first = main image
+         LOOP product.stats    -> 4 key numbers
+         LOOP product.features -> "Key features" bullets
+         LOOP product.assurances (or settings) -> warranty strip
+  -->
+  <section class="rc-pd" aria-labelledby="pd-title">
+    <div class="container">
+      <nav aria-label="Breadcrumb">
+        <ol class="rc-breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html" data-field="category.title" data-field-href="category.url">Dewatering Pumps</a></li>
+          <li aria-current="page" data-field="title">14&Prime; Dewatering Pump with Frame</li>
+        </ol>
+      </nav>
+
+      <div class="row g-4 g-xl-5">
+        <!-- Gallery -->
+        <div class="col-lg-6" data-component="product-gallery">
+          <div class="rc-gallery__main">
+            <span class="rc-gallery__badge" data-field="size_label">14&Prime; 350 mm</span>
+            <img id="pdMainImage" src="assets/images/product-detail-1.jpg" alt="14 inch dewatering pump with frame, view 1" width="931" height="633" fetchpriority="high" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <!-- LOOP: product.images -->
+          <div class="rc-gallery__thumbs" data-loop="product.images">
+            <button type="button" class="rc-gallery__thumb is-active" aria-pressed="true" aria-label="Show image 1"
+                    data-full="assets/images/product-detail-1.jpg" data-alt="14 inch dewatering pump with frame, view 1" data-item data-field-data-full="image">
+              <img src="assets/images/product-detail-1.jpg" alt="" width="160" height="110" loading="lazy">
+            </button>
+            <button type="button" class="rc-gallery__thumb" aria-pressed="false" aria-label="Show image 2"
+                    data-full="assets/images/product-2.jpg" data-alt="14 inch dewatering pump with frame, view 2" data-item data-field-data-full="image">
+              <img src="assets/images/product-2.jpg" alt="" width="160" height="110" loading="lazy">
+            </button>
+            <button type="button" class="rc-gallery__thumb" aria-pressed="false" aria-label="Show image 3"
+                    data-full="assets/images/product-3.jpg" data-alt="14 inch dewatering pump with frame, view 3" data-item data-field-data-full="image">
+              <img src="assets/images/product-3.jpg" alt="" width="160" height="110" loading="lazy">
+            </button>
+            <button type="button" class="rc-gallery__thumb" aria-pressed="false" aria-label="Show image 4"
+                    data-full="assets/images/product-4.jpg" data-alt="14 inch dewatering pump with frame, view 4" data-item data-field-data-full="image">
+              <img src="assets/images/product-4.jpg" alt="" width="160" height="110" loading="lazy">
+            </button>
+          </div>
+          <!-- END LOOP -->
+        </div>
+
+        <!-- Summary -->
+        <div class="col-lg-6">
+          <div class="rc-pd__meta">
+            <a href="products.html" class="rc-eyebrow mb-0" data-field="category.title" data-field-href="category.url">Dewatering Pumps</a>
+            <span class="rc-pd__sku">SKU: <span data-field="sku">RACORS 350 F</span></span>
+          </div>
+          <h1 id="pd-title" class="rc-pd__title" data-field="title">14&Prime; Dewatering Pump with Frame</h1>
+          <p class="rc-pd__lead" data-field="short_description">Ultra high-capacity diesel set for large-volume dewatering and long-distance water transfer. Choose a closed impeller with mechanical seal, or an open-type impeller for solids.</p>
+
+          <!-- LOOP: product.stats -->
+          <div class="rc-pd-stats" data-loop="product.stats">
+            <div class="rc-pd-stats__item" data-item>
+              <span class="rc-pd-stats__label" data-field="label">Max. flow</span>
+              <span class="rc-pd-stats__value"><strong data-field="value">200</strong> <small data-field="unit">m³/h</small></span>
+            </div>
+            <div class="rc-pd-stats__item" data-item>
+              <span class="rc-pd-stats__label" data-field="label">Max. head</span>
+              <span class="rc-pd-stats__value"><strong data-field="value">40</strong> <small data-field="unit">m</small></span>
+            </div>
+            <div class="rc-pd-stats__item" data-item>
+              <span class="rc-pd-stats__label" data-field="label">Suction lift</span>
+              <span class="rc-pd-stats__value"><strong data-field="value">9</strong> <small data-field="unit">m</small></span>
+            </div>
+            <div class="rc-pd-stats__item" data-item>
+              <span class="rc-pd-stats__label" data-field="label">Engine</span>
+              <span class="rc-pd-stats__value"><strong data-field="value">313</strong> <small data-field="unit">HP · Kirloskar</small></span>
+            </div>
+          </div>
+          <!-- END LOOP -->
+
+          <h2 class="rc-pd__subhead">Key features</h2>
+          <!-- LOOP: product.features -->
+          <ul class="rc-check rc-check--2col" data-loop="product.features">
+            <li data-item>Dry self-prime and re-prime</li>
+            <li data-item>Handles liquids and solids</li>
+            <li data-item>Low fuel use, low maintenance</li>
+            <li data-item>Diesel or electric configuration</li>
+            <li data-item>IP65 weatherproof control panel</li>
+            <li data-item>Double mechanical seal in oil bath</li>
+            <li data-item>Replaceable wear parts</li>
+            <li data-item>Custom builds available</li>
+          </ul>
+          <!-- END LOOP -->
+
+          <div class="rc-pd__actions">
+            <button type="button" class="btn rc-btn rc-btn-primary" data-bs-toggle="modal" data-bs-target="#enquiryModal" data-enquiry-type="quote" data-product-id="1" data-field-data-product-id="id">Get a Quote</button>
+            <a class="btn rc-btn rc-btn-outline" href="https://wa.me/917540086315?text=Hi%2C%20I%27m%20interested%20in%20the%2014%22%20Dewatering%20Pump%20(RACORS%20350%20F)" target="_blank" rel="noopener" data-field-href="whatsapp_link"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+            <!-- IF brochure_pdf -->
+            <a class="btn rc-btn rc-btn-outline" href="#" download data-field-href="brochure_pdf"><i class="bi bi-download"></i> Brochure</a>
+            <!-- END IF -->
+          </div>
+
+          <!-- LOOP: product.assurances -->
+          <div class="rc-pd-assure" data-loop="product.assurances">
+            <div class="rc-pd-assure__item" data-item><strong data-field="title">18-month warranty</strong><span data-field="subtitle">Manufacturing defects</span></div>
+            <div class="rc-pd-assure__item" data-item><strong data-field="title">24-hour duty</strong><span data-field="subtitle">Non-stop operation</span></div>
+            <div class="rc-pd-assure__item" data-item><strong data-field="title">24/7 support</strong><span data-field="subtitle">Middle East &amp; N. Africa</span></div>
+          </div>
+          <!-- END LOOP -->
+        </div>
+      </div>
+
+      <!-- ===== Details accordion (Description / Additional information / Specifications) ===== -->
+      <div class="accordion rc-pd-tabs" id="productDetails">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="pd-desc-h">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pd-desc" aria-expanded="true" aria-controls="pd-desc">Description</button>
+          </h2>
+          <div id="pd-desc" class="accordion-collapse collapse show" aria-labelledby="pd-desc-h">
+            <div class="accordion-body" data-field="description_html">
+              <p>The suction and discharge connections of 350 x 350 mm, our pumps guarantee a strong flow capacity. You can choose between a closed-type impeller with a mechanical seal for reliable performance or an open-type impeller for specific applications. The priming tank is made from durable materials like mild steel or stainless steel ensuring resilience and longevity.</p>
+              <p class="mb-0">We provide tailored solutions to meet your specific requirements, making sure each pump is perfectly suited for its intended use. By offering a wide range of customization options, we ensure our pumps meet the unique demands of each application, delivering effective and reliable solutions for diverse dewatering needs.</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="pd-info-h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pd-info" aria-expanded="false" aria-controls="pd-info">Additional information</button>
+          </h2>
+          <div id="pd-info" class="accordion-collapse collapse" aria-labelledby="pd-info-h">
+            <div class="accordion-body">
+              <!-- LOOP: product.attributes -->
+              <dl class="rc-attrs" data-loop="product.attributes">
+                <div data-item><dt data-field="label">Weight</dt><dd data-field="value">2,450 kg</dd></div>
+                <div data-item><dt data-field="label">Dimensions (L × W × H)</dt><dd data-field="value">3.4 × 1.6 × 1.9 m</dd></div>
+                <div data-item><dt data-field="label">Fuel tank</dt><dd data-field="value">220 L</dd></div>
+                <div data-item><dt data-field="label">Mounting</dt><dd data-field="value">Skid frame / road trailer</dd></div>
+                <div data-item><dt data-field="label">Max. solids</dt><dd data-field="value">75 mm</dd></div>
+              </dl>
+              <!-- END LOOP -->
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="pd-spec-h">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pd-spec" aria-expanded="true" aria-controls="pd-spec">Specifications</button>
+          </h2>
+          <div id="pd-spec" class="accordion-collapse collapse show" aria-labelledby="pd-spec-h">
+            <div class="accordion-body">
+              <div class="table-responsive" data-lenis-prevent-horizontal>
+                <table class="rc-spec-table">
+                  <thead>
+                    <tr><th colspan="2" scope="colgroup">Pump Specification</th><th colspan="2" scope="colgroup">Material Construction</th></tr>
+                  </thead>
+                  <!-- LOOP: product.spec_rows (pump spec + material, side by side) -->
+                  <tbody data-loop="product.spec_rows">
+                    <tr data-item>
+                      <th scope="row" data-field="pump_label">Brand</th><td data-field="pump_value">Racors</td>
+                      <th scope="row" data-field="material_label">Volute casing</th><td data-field="material_value">Cast iron</td>
+                    </tr>
+                    <tr data-item>
+                      <th scope="row" data-field="pump_label">Model</th><td data-field="pump_value">RACORS 350 F</td>
+                      <th scope="row" data-field="material_label">Impeller</th><td data-field="material_value">Ductile iron / SS</td>
+                    </tr>
+                    <tr data-item>
+                      <th scope="row" data-field="pump_label">Size</th><td data-field="pump_value">14&Prime; (350 × 350 mm)</td>
+                      <th scope="row" data-field="material_label">Shaft</th><td data-field="material_value">EN8 / SS410</td>
+                    </tr>
+                    <tr data-item>
+                      <th scope="row" data-field="pump_label">Max. flow</th><td data-field="pump_value">200 m³/h</td>
+                      <th scope="row" data-field="material_label">Mechanical seal</th><td data-field="material_value">SiC, oil bath</td>
+                    </tr>
+                    <tr data-item>
+                      <th scope="row" data-field="pump_label">Max. head</th><td data-field="pump_value">40 m</td>
+                      <th scope="row" data-field="material_label">Priming tank</th><td data-field="material_value">Mild steel / SS</td>
+                    </tr>
+                    <tr data-item>
+                      <th scope="row" data-field="pump_label">Engine</th><td data-field="pump_value">Kirloskar 313 HP</td>
+                      <th scope="row" data-field="material_label">Frame</th><td data-field="material_value">MS, powder coated</td>
+                    </tr>
+                  </tbody>
+                  <!-- END LOOP -->
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Inline enquiry form (same POST /enquiry as the modal) ===== -->
+      <div class="rc-enquiry-card rc-reveal" id="product-enquiry">
+        <form class="rc-form" action="/enquiry" method="post" novalidate data-validate>
+          <!-- BACKEND: CSRF token (Laravel: @csrf) -->
+          <input type="hidden" name="_token" value="">
+          <div class="alert alert-success rc-form__status d-none" role="status" data-flash="success">Thank you. Our team will contact you within one business day.</div>
+          <div class="alert alert-danger rc-form__status d-none" role="alert" data-flash="error">Please correct the highlighted fields.</div>
+          <input type="hidden" name="type" value="quote">
+          <input type="hidden" name="product_id" value="1" data-field-value="id">
+          <input type="hidden" name="source_page" value="product-detail">
+          <div class="rc-hp" aria-hidden="true"><label for="pe-website">Website</label><input type="text" id="pe-website" name="website" tabindex="-1" autocomplete="off"></div>
+
+          <div class="row g-3 g-md-4">
+            <div class="col-12">
+              <label for="pe-name" class="form-label">Name <span class="rc-req">*</span></label>
+              <input type="text" class="form-control" id="pe-name" name="name" placeholder="Full Name" required minlength="2" maxlength="120" autocomplete="name">
+              <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="pe-email" class="form-label">Email <span class="rc-req">*</span></label>
+              <input type="email" class="form-control" id="pe-email" name="email" placeholder="you@company.com" required maxlength="160" autocomplete="email">
+              <div class="invalid-feedback">Please enter a valid email.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="pe-phone" class="form-label">Phone Number <span class="rc-req">*</span></label>
+              <input type="tel" class="form-control" id="pe-phone" name="phone" placeholder="+91" required pattern="^\+?[0-9\s\-]{7,20}$" autocomplete="tel">
+              <div class="invalid-feedback">Please enter a valid phone number.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="pe-company" class="form-label">Company Name</label>
+              <input type="text" class="form-control" id="pe-company" name="company" placeholder="Eg: ABC Infra" maxlength="160" autocomplete="organization">
+            </div>
+            <div class="col-md-6">
+              <label for="pe-req" class="form-label">Please select your requirement <span class="rc-req">*</span></label>
+              <select class="form-select" id="pe-req" name="requirement" required>
+                <option value="purchase" selected>Dewatering pump – purchase</option>
+                <option value="rental">Dewatering pump – rental</option>
+                <option value="project">Project / turnkey solution</option>
+                <option value="repair">Spares, repair &amp; maintenance</option>
+              </select>
+              <div class="invalid-feedback">Please choose a requirement.</div>
+            </div>
+            <div class="col-12">
+              <label for="pe-message" class="form-label">Pump range / project details</label>
+              <textarea class="form-control" id="pe-message" name="message" rows="4" placeholder="Add additional information" maxlength="2000"></textarea>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="pe-consent" name="consent" value="1" required>
+                <label class="form-check-label" for="pe-consent">I agree to be contacted about this enquiry and accept the <a href="/privacy" target="_blank">Privacy Policy</a>.</label>
+                <div class="invalid-feedback">Please accept to continue.</div>
+              </div>
+            </div>
+            <div class="col-12 d-flex justify-content-end">
+              <button type="submit" class="btn rc-btn rc-btn-primary rc-enquiry-card__submit">
+                <span class="spinner-border spinner-border-sm d-none" aria-hidden="true" data-slot="spinner"></span>
+                <span>Submit</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION: Core features =================
+       DYNAMIC: LOOP product.core_features (icon = Bootstrap Icons class, title, text) -->
+  <section class="rc-section" aria-labelledby="core-title">
+    <div class="container">
+      <div class="rc-reveal">
+        <span class="rc-eyebrow">Core features</span>
+        <h2 id="core-title" class="rc-h2 rc-h2--narrow">Engineered for nonstop, high-volume duty</h2>
+      </div>
+      <!-- LOOP: product.core_features -->
+      <div class="row g-4" data-loop="product.core_features">
+        <div class="col-md-6 col-lg-4 rc-reveal" data-item>
+          <article class="rc-service">
+            <span class="rc-service__icon"><i class="bi bi-arrow-down-circle" data-field="icon"></i></span>
+            <h3 class="rc-service__title" data-field="title">Vacuum-assisted self-priming</h3>
+            <p data-field="text">Pulls air from the suction line so the pump starts and keeps running without manual priming.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4 rc-reveal" data-item>
+          <article class="rc-service">
+            <span class="rc-service__icon"><i class="bi bi-gear-wide-connected" data-field="icon"></i></span>
+            <h3 class="rc-service__title" data-field="title">313 HP Kirloskar diesel</h3>
+            <p data-field="text">Proven diesel power with a 220 L tank for around 24 hours of unattended running.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4 rc-reveal" data-item>
+          <article class="rc-service">
+            <span class="rc-service__icon"><i class="bi bi-truck-flatbed" data-field="icon"></i></span>
+            <h3 class="rc-service__title" data-field="title">Heavy-duty frame or trailer</h3>
+            <p data-field="text">Open skid frame for easy service access and stable operation; trailer and canopy options for mobility.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4 rc-reveal" data-item>
+          <article class="rc-service">
+            <span class="rc-service__icon"><i class="bi bi-water" data-field="icon"></i></span>
+            <h3 class="rc-service__title" data-field="title">High flow capacity</h3>
+            <p data-field="text">Up to 1,500 m³/h for large excavations, flood response and long pipeline transfer.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4 rc-reveal" data-item>
+          <article class="rc-service">
+            <span class="rc-service__icon"><i class="bi bi-wrench-adjustable" data-field="icon"></i></span>
+            <h3 class="rc-service__title" data-field="title">Low-maintenance design</h3>
+            <p data-field="text">Oil-bath double mechanical seal and replaceable wear parts cut upkeep and downtime.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4 rc-reveal" data-item>
+          <article class="rc-service">
+            <span class="rc-service__icon"><i class="bi bi-sliders" data-field="icon"></i></span>
+            <h3 class="rc-service__title" data-field="title">Built to your spec</h3>
+            <p data-field="text">Impeller type, priming-tank material, drive and mounting configured for your site.</p>
+          </article>
+        </div>
+      </div>
+      <!-- END LOOP -->
+    </div>
+  </section>
+
+  <!-- ================= SECTION: Product FAQ =================
+       DYNAMIC: LOOP product.faqs (item with is_expanded = 1 is open) -->
+  <section class="rc-section rc-bg-surface" id="faq" aria-labelledby="pfaq-title">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5 rc-reveal">
+          <span class="rc-eyebrow">FAQ</span>
+          <h2 id="pfaq-title" class="rc-h2">About the 14&Prime; pump</h2>
+          <p class="rc-lead">Still unsure? Our engineers can size it against your duty point.</p>
+          <a href="#product-enquiry" class="btn rc-btn rc-btn-outline">Ask an engineer <i class="bi bi-arrow-right"></i></a>
+        </div>
+        <div class="col-lg-7 rc-reveal">
+          <!-- LOOP: product.faqs -->
+          <div class="accordion rc-accordion" id="productFaq" data-loop="product.faqs">
+            <div class="accordion-item" data-item>
+              <h3 class="accordion-header" id="pfaq-1-h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pfaq-1-c" aria-expanded="false" aria-controls="pfaq-1-c" data-field="question">Can it run dry?</button>
+              </h3>
+              <div id="pfaq-1-c" class="accordion-collapse collapse" aria-labelledby="pfaq-1-h" data-bs-parent="#productFaq">
+                <div class="accordion-body" data-field="answer">Yes. The vacuum-assisted priming system and oil-bath mechanical seal allow extended dry running while the pump re-primes.</div>
+              </div>
+            </div>
+            <div class="accordion-item" data-item>
+              <h3 class="accordion-header" id="pfaq-2-h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pfaq-2-c" aria-expanded="false" aria-controls="pfaq-2-c" data-field="question">What solids size can it handle?</button>
+              </h3>
+              <div id="pfaq-2-c" class="accordion-collapse collapse" aria-labelledby="pfaq-2-h" data-bs-parent="#productFaq">
+                <div class="accordion-body" data-field="answer">Up to 75 mm spherical solids with the open-type impeller; the closed impeller is recommended for cleaner water and higher head.</div>
+              </div>
+            </div>
+            <div class="accordion-item" data-item>
+              <h3 class="accordion-header" id="pfaq-3-h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pfaq-3-c" aria-expanded="false" aria-controls="pfaq-3-c" data-field="question">Is an electric version available?</button>
+              </h3>
+              <div id="pfaq-3-c" class="accordion-collapse collapse" aria-labelledby="pfaq-3-h" data-bs-parent="#productFaq">
+                <div class="accordion-body" data-field="answer">Yes, the 14″ pump can be supplied with an electric motor and starter panel instead of the diesel engine.</div>
+              </div>
+            </div>
+            <div class="accordion-item" data-item>
+              <h3 class="accordion-header" id="pfaq-4-h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pfaq-4-c" aria-expanded="false" aria-controls="pfaq-4-c" data-field="question">How long can it run on one tank?</button>
+              </h3>
+              <div id="pfaq-4-c" class="accordion-collapse collapse" aria-labelledby="pfaq-4-h" data-bs-parent="#productFaq">
+                <div class="accordion-body" data-field="answer">With the standard 220 L tank, around 24 hours at typical duty points. Larger tanks are available.</div>
+              </div>
+            </div>
+            <div class="accordion-item" data-item>
+              <h3 class="accordion-header" id="pfaq-5-h">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pfaq-5-c" aria-expanded="true" aria-controls="pfaq-5-c" data-field="question">Do you provide custom solutions?</button>
+              </h3>
+              <div id="pfaq-5-c" class="accordion-collapse collapse show" aria-labelledby="pfaq-5-h" data-bs-parent="#productFaq">
+                <div class="accordion-body" data-field="answer">Yes. Impeller type, priming-tank material, drive and mounting can all be configured to your duty point.</div>
+              </div>
+            </div>
+          </div>
+          <!-- END LOOP -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION: Related products =================
+       DYNAMIC: LOOP related_products (same category, exclude current, max 4) -->
+  <section class="rc-section" aria-labelledby="related-title">
+    <div class="container">
+      <div class="rc-section-header rc-reveal">
+        <h2 id="related-title" class="rc-h2 mb-0">Related Products</h2>
+        <a href="products.html" class="btn rc-btn rc-btn-outline">View All <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <!-- LOOP: related_products -->
+      <div class="row g-4" data-loop="related_products">
+        <div class="col-sm-6 col-lg-3" data-item>
+          <article class="rc-product">
+            <a class="rc-product__media" href="product-detail.html" data-field-href="url">
+              <img src="assets/images/product-1.jpg" alt="14 Inch Dewatering Pump With Frame" width="373" height="252" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+            </a>
+            <div class="rc-product__body">
+      
+              <h3 class="rc-product__title"><a href="product-detail.html" data-field="title" data-field-href="url">14 Inch Dewatering Pump With Frame</a></h3>
+              <p class="rc-product__desc" data-field="short_description">Trailer-Mounted Diesel Sets For High-Volume, Solids-Laden Water.</p>
+                <!-- LOOP: product.tags -->
+                <div class="rc-product__tags" data-loop="product.tags"><span class="rc-chip" data-item>Head up to 40 m</span><span class="rc-chip" data-item>200 m³/h</span></div>
+                <!-- END LOOP -->
+              <div class="rc-product__actions">
+                <button type="button" class="btn rc-btn rc-btn-dark rc-btn-sm" data-bs-toggle="modal" data-bs-target="#enquiryModal" data-enquiry-type="quote" data-product-id="1" data-field-data-product-id="id">Get a Quote</button>
+                <!-- IF brochure_pdf -->
+                <a class="btn rc-btn rc-btn-ghost-sm" href="#" download data-field-href="brochure_pdf">Brochure <i class="bi bi-download"></i></a>
+                <!-- END IF -->
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-item>
+          <article class="rc-product">
+            <a class="rc-product__media" href="product-detail.html" data-field-href="url">
+              <img src="assets/images/product-2.jpg" alt="14 Inch Dewatering Pump With Frame" width="373" height="252" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+            </a>
+            <div class="rc-product__body">
+      
+              <h3 class="rc-product__title"><a href="product-detail.html" data-field="title" data-field-href="url">14 Inch Dewatering Pump With Frame</a></h3>
+              <p class="rc-product__desc" data-field="short_description">Trailer-Mounted Diesel Sets For High-Volume, Solids-Laden Water.</p>
+                <!-- LOOP: product.tags -->
+                <div class="rc-product__tags" data-loop="product.tags"><span class="rc-chip" data-item>Head up to 40 m</span><span class="rc-chip" data-item>200 m³/h</span></div>
+                <!-- END LOOP -->
+              <div class="rc-product__actions">
+                <button type="button" class="btn rc-btn rc-btn-dark rc-btn-sm" data-bs-toggle="modal" data-bs-target="#enquiryModal" data-enquiry-type="quote" data-product-id="2" data-field-data-product-id="id">Get a Quote</button>
+                <!-- IF brochure_pdf -->
+                <a class="btn rc-btn rc-btn-ghost-sm" href="#" download data-field-href="brochure_pdf">Brochure <i class="bi bi-download"></i></a>
+                <!-- END IF -->
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-item>
+          <article class="rc-product">
+            <a class="rc-product__media" href="product-detail.html" data-field-href="url">
+              <img src="assets/images/product-3.jpg" alt="14 Inch Dewatering Pump With Frame" width="373" height="252" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+            </a>
+            <div class="rc-product__body">
+      
+              <h3 class="rc-product__title"><a href="product-detail.html" data-field="title" data-field-href="url">14 Inch Dewatering Pump With Frame</a></h3>
+              <p class="rc-product__desc" data-field="short_description">Trailer-Mounted Diesel Sets For High-Volume, Solids-Laden Water.</p>
+                <!-- LOOP: product.tags -->
+                <div class="rc-product__tags" data-loop="product.tags"><span class="rc-chip" data-item>Head up to 40 m</span><span class="rc-chip" data-item>200 m³/h</span></div>
+                <!-- END LOOP -->
+              <div class="rc-product__actions">
+                <button type="button" class="btn rc-btn rc-btn-dark rc-btn-sm" data-bs-toggle="modal" data-bs-target="#enquiryModal" data-enquiry-type="quote" data-product-id="3" data-field-data-product-id="id">Get a Quote</button>
+                <!-- IF brochure_pdf -->
+                <a class="btn rc-btn rc-btn-ghost-sm" href="#" download data-field-href="brochure_pdf">Brochure <i class="bi bi-download"></i></a>
+                <!-- END IF -->
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-item>
+          <article class="rc-product">
+            <a class="rc-product__media" href="product-detail.html" data-field-href="url">
+              <img src="assets/images/product-4.jpg" alt="14 Inch Dewatering Pump With Frame" width="373" height="252" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+            </a>
+            <div class="rc-product__body">
+      
+              <h3 class="rc-product__title"><a href="product-detail.html" data-field="title" data-field-href="url">14 Inch Dewatering Pump With Frame</a></h3>
+              <p class="rc-product__desc" data-field="short_description">Trailer-Mounted Diesel Sets For High-Volume, Solids-Laden Water.</p>
+                <!-- LOOP: product.tags -->
+                <div class="rc-product__tags" data-loop="product.tags"><span class="rc-chip" data-item>Head up to 40 m</span><span class="rc-chip" data-item>200 m³/h</span></div>
+                <!-- END LOOP -->
+              <div class="rc-product__actions">
+                <button type="button" class="btn rc-btn rc-btn-dark rc-btn-sm" data-bs-toggle="modal" data-bs-target="#enquiryModal" data-enquiry-type="quote" data-product-id="4" data-field-data-product-id="id">Get a Quote</button>
+                <!-- IF brochure_pdf -->
+                <a class="btn rc-btn rc-btn-ghost-sm" href="#" download data-field-href="brochure_pdf">Brochure <i class="bi bi-download"></i></a>
+                <!-- END IF -->
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <!-- END LOOP -->
+    </div>
+  </section>
+</main>
+
+<!-- ================= LAYOUT: Footer ================= -->
+<!-- DYNAMIC (SETTINGS): company_about, address, contact_email, phone, social_* URLs -->
+<footer class="rc-footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <img src="assets/images/logo.png" alt="Racors" width="242" height="87" class="rc-footer__logo">
+        <p>Racors proudly stands as a leading Indian manufacturer, exporter, and importer of specialized dewatering pumps and high-performance fluid management equipment, serving industries across the globe.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3 class="rc-footer__head">Services</h3>
+        <ul class="rc-footer__links">
+          <li><a href="products.html">Product Ranges</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="services.html">Pump Sales</a></li>
+          <li><a href="services.html">Pump Hire</a></li>
+          <li><a href="services.html">Project Works</a></li>
+          <li><a href="services.html">Repair &amp; Services</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3 class="rc-footer__head">Quick Links</h3>
+        <ul class="rc-footer__links">
+          <li><a href="about.html">About us</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="/instock">Ready Stock</a></li>
+          <li><a href="/careers">Career</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h3 class="rc-footer__head">Contact Us</h3>
+        <address class="rc-footer__address" data-field="settings.address">
+          8/27 Rasi Garden, Coimbatore – 641109,<br>Tamil Nadu, India<br>
+          <a href="mailto:info@racors.in">info@racors.in</a><br>
+          <a href="tel:+917200076755">+91 72000 76755</a>
+        </address>
+        <div class="rc-social">
+          <a href="#" aria-label="Facebook" rel="noopener" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="YouTube" rel="noopener" target="_blank"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn" rel="noopener" target="_blank"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="Instagram" rel="noopener" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="X" rel="noopener" target="_blank"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rc-footer__bottom">
+      <p class="mb-0">© <span data-current-year>2026</span> Racors. All Rights Reserved <span class="mx-1">|</span> <i class="bi bi-clock"></i> 24/7 After Sales Support</p>
+      <p class="mb-0"><a href="/terms">Terms &amp; conditions</a> <span class="mx-1">|</span> <a href="/privacy">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+<!-- ================= COMPONENT: Enquiry / Quote modal =================
+     Opened by any element with  data-bs-toggle="modal" data-bs-target="#enquiryModal"
+       data-enquiry-type="general|quote|brochure"   sets the hidden `type` field + modal title
+       data-product-id="{id}"                       pre-selects the product
+     SUBMIT: normal HTML form POST to /enquiry (no AJAX). Field `name`s = database columns.
+     BACKEND after POST:
+       success -> redirect back with flash message; print it in [data-flash="success"] (remove .d-none)
+       errors  -> re-render page: old() values in inputs, add .is-invalid to the field,
+                  put the message in its .invalid-feedback, show [data-flash="error"].
+       The modal re-opens automatically on load when it contains a visible flash or .is-invalid.
+-->
+<div class="modal fade rc-modal" id="enquiryModal" data-lenis-prevent tabindex="-1" aria-labelledby="enquiryModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="enquiryModalTitle" data-title-general="Send an Enquiry" data-title-quote="Request a Quotation" data-title-brochure="Request a Brochure">Send an Enquiry</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="rc-form" id="enquiryForm" action="/enquiry" method="post" novalidate data-component="enquiry-form">
+          <!-- BACKEND: CSRF token (Laravel: @csrf) -->
+          <input type="hidden" name="_token" value="">
+          <!-- FLASH messages (server-rendered; remove .d-none to show) -->
+          <div class="alert alert-success rc-form__status d-none" role="status" data-flash="success">Thank you. Our team will contact you within one business day.</div>
+          <div class="alert alert-danger rc-form__status d-none" role="alert" data-flash="error">Please correct the highlighted fields.</div>
+
+          <input type="hidden" name="type" value="general">
+          <input type="hidden" name="source_page" value="">
+          <!-- Honeypot: real users never fill this. Reject on the server if not empty. -->
+          <div class="rc-hp" aria-hidden="true">
+            <label for="enq-website">Website</label>
+            <input type="text" id="enq-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="enq-name" class="form-label">Full name <span class="rc-req">*</span></label>
+              <input type="text" class="form-control" id="enq-name" name="name" required minlength="2" maxlength="120" autocomplete="name">
+              <div class="invalid-feedback" data-error-for="name">Please enter your name.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-company" class="form-label">Company</label>
+              <input type="text" class="form-control" id="enq-company" name="company" maxlength="160" autocomplete="organization">
+              <div class="invalid-feedback" data-error-for="company"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-phone" class="form-label">Phone / WhatsApp <span class="rc-req">*</span></label>
+              <input type="tel" class="form-control" id="enq-phone" name="phone" required pattern="^\+?[0-9\s\-]{7,20}$" autocomplete="tel" placeholder="+91 …">
+              <div class="invalid-feedback" data-error-for="phone">Please enter a valid phone number.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-email" class="form-label">Email <span class="rc-req">*</span></label>
+              <input type="email" class="form-control" id="enq-email" name="email" required maxlength="160" autocomplete="email">
+              <div class="invalid-feedback" data-error-for="email">Please enter a valid email.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-product" class="form-label">Product of interest</label>
+              <select class="form-select" id="enq-product" name="product_id">
+                <option value="">Not sure / General</option>
+                <!-- LOOP: products (all active) -> <option value="{id}">{title}</option> -->
+                <option value="1">Dewatering Pumps</option>
+                <option value="2">Submersible Pumps</option>
+                <option value="3">Trailer Dewatering Pumps</option>
+                <option value="4">Wellpoint Dewatering Pumps</option>
+                <!-- END LOOP -->
+              </select>
+              <div class="invalid-feedback" data-error-for="product_id"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-service" class="form-label">Requirement</label>
+              <select class="form-select" id="enq-service" name="requirement">
+                <option value="purchase">Purchase</option>
+                <option value="rental">Rental</option>
+                <option value="project">Project / turnkey</option>
+                <option value="repair">Repair &amp; maintenance</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="enq-message" class="form-label">Message <span class="rc-req">*</span></label>
+              <textarea class="form-control" id="enq-message" name="message" rows="4" required minlength="10" maxlength="2000" placeholder="Site location, flow / head required, duration…"></textarea>
+              <div class="invalid-feedback" data-error-for="message">Please tell us a little about your requirement (min. 10 characters).</div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="enq-consent" name="consent" value="1" required>
+                <label class="form-check-label" for="enq-consent">I agree to be contacted about this enquiry and accept the <a href="/privacy" target="_blank">Privacy Policy</a>.</label>
+                <div class="invalid-feedback" data-error-for="consent">Please accept to continue.</div>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="d-flex justify-content-end gap-2 mt-4">
+            <button type="button" class="btn rc-btn rc-btn-outline" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn rc-btn rc-btn-primary">
+              <span class="spinner-border spinner-border-sm d-none" aria-hidden="true" data-slot="spinner"></span>
+              <span data-slot="label">Submit Enquiry</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ================= COMPONENT: Floating contact (speed-dial) =================
+     Click the round button -> WhatsApp + Call buttons rise up; the chat icon swipes into a close (X).
+     Click again, press Esc or click anywhere else to close. Labels' letters roll on hover (morph swipe).
+     DYNAMIC (SETTINGS): whatsapp_number (+ optional prefilled text), sales_phone
+-->
+<div class="rc-fab" data-component="fab">
+  <ul class="rc-fab__menu" id="rcFabMenu" aria-label="Contact options">
+    <li>
+      <a class="rc-fab__item rc-fab__item--wa" href="https://wa.me/917540086315?text=Hi%20Racors%2C%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener" data-field-href="settings.whatsapp_link">
+        <span class="rc-fab__label">WhatsApp</span>
+        <span class="rc-fab__icon" aria-hidden="true"><i class="bi bi-whatsapp"></i></span>
+      </a>
+    </li>
+    <li>
+      <a class="rc-fab__item rc-fab__item--call" href="tel:+917540086755" data-field-href="settings.sales_phone">
+        <span class="rc-fab__label">Call us</span>
+        <span class="rc-fab__icon" aria-hidden="true"><i class="bi bi-telephone"></i></span>
+      </a>
+    </li>
+  </ul>
+  <button type="button" class="rc-fab__toggle" aria-expanded="false" aria-controls="rcFabMenu" aria-label="Contact us" data-label-open="Contact us" data-label-close="Close contact options">
+    <span class="rc-fab__swap" aria-hidden="true">
+      <i class="bi bi-chat-dots-fill"></i>
+      <i class="bi bi-x-lg"></i>
+    </span>
+  </button>
+</div>
+<!-- Vendor JS (Bootstrap bundle includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+<!-- Hero slider -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@14.4.0/swiper-bundle.min.js" defer></script>
+<!-- Smooth (inertia) scrolling -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" defer></script>
+<!-- App JS -->
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

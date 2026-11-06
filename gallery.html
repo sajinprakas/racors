@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery | Racors</title>
+  <link rel="icon" href="assets/images/favicon.png">
+  <!-- Mark JS as available before first paint (enables loader + animations without a flash) -->
+  <script>document.documentElement.classList.replace("no-js", "js"); document.documentElement.classList.add("is-loading");</script>
+
+  <!-- Fonts + vendor CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/swiper@14.4.0/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- App CSS -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body data-page="gallery">
+
+<!-- ================= COMPONENT: Page loader =================
+     Shown until the page (images, fonts) has loaded, then slides away.
+     Hidden automatically without JavaScript. -->
+<div class="rc-preloader" id="rcPreloader" role="status" aria-live="polite">
+  <div class="rc-preloader__inner">
+    <img src="assets/images/logo-white.png" alt="" width="186" height="59" class="rc-preloader__logo">
+    <div class="rc-preloader__bar" aria-hidden="true"><span id="rcPreloaderBar"></span></div>
+    <span class="visually-hidden">Loading…</span>
+  </div>
+</div>
+
+<!-- ================= LAYOUT: Header / main navigation ================= -->
+<a class="visually-hidden-focusable rc-skip" href="#main">Skip to content</a>
+
+<header class="rc-header" id="top" data-component="header">
+  <nav class="navbar navbar-expand-xl" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand rc-brand" href="index.html">
+        <img src="assets/images/logo-white.png" alt="Racors" width="186" height="59">
+      </a>
+
+      <button class="navbar-toggler rc-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#rcMenu" aria-controls="rcMenu" aria-label="Open menu">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="offcanvas offcanvas-end rc-offcanvas" tabindex="-1" id="rcMenu" data-lenis-prevent aria-labelledby="rcMenuLabel">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h6 mb-0" id="rcMenuLabel">Menu</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body align-items-xl-center">
+          <!-- BACKEND: menu items can come from a CMS menu; mark the current page with .active + aria-current="page" -->
+          <ul class="navbar-nav ms-xl-auto rc-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="products.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+              <ul class="dropdown-menu rc-dropdown">
+                <li><a class="dropdown-item" href="products.html">Dewatering Pumps</a></li>
+                <li><a class="dropdown-item" href="products.html">Submersible Pumps</a></li>
+                <li><a class="dropdown-item" href="products.html">Spares</a></li>
+                <li><a class="dropdown-item" href="products.html">Fittings &amp; Hoses</a></li>
+                <li><a class="dropdown-item" href="products.html">Gensets &amp; Towerlights</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="industries.html">Industries</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="gallery.html">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="/instock">Instock</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="/blogs">Blogs</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle rc-lang" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="rc-flag" aria-hidden="true">🇺🇸</span> Eng
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end rc-dropdown">
+                <li><a class="dropdown-item" href="?lang=en">English</a></li>
+                <li><a class="dropdown-item" href="?lang=ar">العربية</a></li>
+              </ul>
+            </li>
+          </ul>
+          <button type="button" class="btn rc-btn rc-btn-white ms-xl-3 mt-3 mt-xl-0"
+                  data-bs-toggle="modal" data-bs-target="#enquiryModal" data-enquiry-type="general">Send Enquiry</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- ================= SECTION: Page banner ================= -->
+  <section class="rc-page-hero" aria-labelledby="page-title">
+    <img class="rc-page-hero__img" src="assets/images/hero-1.jpg" alt="Pump manufacturing line" width="1600" height="900" fetchpriority="high" data-field-src="banner_image" data-field-alt="banner_image_alt">
+    <div class="container">
+      <div class="rc-page-hero__content">
+        <h1 id="page-title" class="rc-page-hero__title" data-field="banner_title">Gallery</h1>
+        <p class="rc-page-hero__lead" data-field="banner_lead">Explore our dewatering pump projects, equipment, and real-world applications across construction, mining, oil &amp; gas, and flood control.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION: Gallery grid + lightbox =================
+       DYNAMIC (table: gallery_items – type image|video, thumbnail, image_large, video_url, caption, category, sort_order)
+         Filtering: normal GET form  gallery.html?category[]=projects&page=2  (auto-submits on change)
+         LOOP gallery_items -> tiles. Image tile: href = large image. Video tile: href = .mp4 file OR a YouTube link
+              (https://www.youtube.com/watch?v=ID or https://youtu.be/ID) – the lightbox detects which.
+         "Load more": link to the next page. JS fetches that page and appends its tiles (no page reload);
+              remove the button on the last page.
+       LIGHTBOX (JS, no markup needed): any <a data-lightbox="group"> opens it. Prev/next, counter,
+         caption, thumbnails, keyboard (← → Esc), swipe on touch. Videos play inside it.
+  -->
+  <section class="rc-gallery-page" aria-label="Gallery">
+    <div class="container">
+      <form class="row g-4 g-xl-5" action="gallery.html" method="get" data-component="product-filters">
+        <div class="col-lg-4 col-xl-3">
+          <div class="offcanvas-lg offcanvas-start rc-filters" tabindex="-1" id="filterPanel" aria-labelledby="filterPanelTitle" data-lenis-prevent>
+            <div class="offcanvas-header d-lg-none">
+              <h2 class="offcanvas-title h5 mb-0" id="filterPanelTitle">Category</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#filterPanel" aria-label="Close filters"></button>
+            </div>
+            <div class="offcanvas-body">
+              <div class="rc-filters__card">
+                <div class="rc-filter rc-filter--last">
+                  <h2 class="rc-filter__head rc-filter__head--static">Category</h2>
+                  <!-- LOOP: gallery_categories (checked = selected in the query string) -->
+                  <div class="rc-filter__list" data-loop="gallery_categories">
+                    <div class="form-check rc-filter__item" data-item>
+                      <input class="form-check-input" type="checkbox" name="category[]" value="events" id="g-events" data-field-value="slug">
+                      <label class="form-check-label" for="g-events" data-field="name">Events Gallery</label>
+                    </div>
+                    <div class="form-check rc-filter__item" data-item>
+                      <input class="form-check-input" type="checkbox" name="category[]" value="projects" id="g-projects" data-field-value="slug">
+                      <label class="form-check-label" for="g-projects" data-field="name">Projects Gallery</label>
+                    </div>
+                    <div class="form-check rc-filter__item" data-item>
+                      <input class="form-check-input" type="checkbox" name="category[]" value="warehouse" id="g-warehouse" data-field-value="slug">
+                      <label class="form-check-label" for="g-warehouse" data-field="name">Warehouse</label>
+                    </div>
+                  </div>
+                  <!-- END LOOP -->
+                </div>
+                <div class="d-lg-none mt-4 d-grid">
+                  <button type="submit" class="btn rc-btn rc-btn-primary justify-content-center">Show results</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8 col-xl-9">
+          <div class="d-lg-none mb-3">
+            <button type="button" class="btn rc-btn rc-btn-outline rc-btn-sm" data-bs-toggle="offcanvas" data-bs-target="#filterPanel" aria-controls="filterPanel"><i class="bi bi-sliders"></i> Category</button>
+          </div>
+          <!-- LOOP: gallery_items -->
+          <div class="row g-3 g-md-4" id="galleryGrid" data-loop="gallery_items">
+            <div class="col-6 col-md-4" data-item>
+              <a class="rc-gtile rc-gtile--video" href="assets/videos/sample-video-1.mp4" data-lightbox="gallery" data-type="video" data-poster="assets/images/gallery/gallery-01.jpg" data-caption="14″ dewatering pump set ready for dispatch" data-field-href="video_url" data-field-data-caption="caption">
+                <img src="assets/images/gallery/gallery-01.jpg" alt="14″ dewatering pump set ready for dispatch" width="1000" height="1000" loading="lazy" data-field-src="thumbnail" data-field-alt="caption">
+                <span class="rc-gtile__play" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+                <span class="visually-hidden">Play video: 14″ dewatering pump set ready for dispatch</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4" data-item>
+              <a class="rc-gtile" href="assets/images/gallery/gallery-02.jpg" data-lightbox="gallery" data-type="image" data-caption="Excavation pit dewatering with sheet-pile shoring" data-field-href="image_large" data-field-data-caption="caption">
+                <img src="assets/images/gallery/gallery-02.jpg" alt="Excavation pit dewatering with sheet-pile shoring" width="1000" height="1000" loading="lazy" data-field-src="thumbnail" data-field-alt="caption">
+                <span class="rc-gtile__zoom" aria-hidden="true"><i class="bi bi-arrows-angle-expand"></i></span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4" data-item>
+              <a class="rc-gtile rc-gtile--video" href="assets/videos/sample-video-2.mp4" data-lightbox="gallery" data-type="video" data-poster="assets/images/gallery/gallery-03.jpg" data-caption="Racors pump at an offshore fabrication yard" data-field-href="video_url" data-field-data-caption="caption">
+                <img src="assets/images/gallery/gallery-03.jpg" alt="Racors pump at an offshore fabrication yard" width="1000" height="1000" loading="lazy" data-field-src="thumbnail" data-field-alt="caption">
+                <span class="rc-gtile__play" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+                <span class="visually-hidden">Play video: Racors pump at an offshore fabrication yard</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4" data-item>
+              <a class="rc-gtile rc-gtile--video" href="assets/videos/sample-video-1.mp4" data-lightbox="gallery" data-type="video" data-poster="assets/images/gallery/gallery-04.jpg" data-caption="Lakeside water-transfer installation" data-field-href="video_url" data-field-data-caption="caption">
+                <img src="assets/images/gallery/gallery-04.jpg" alt="Lakeside water-transfer installation" width="1000" height="1000" loading="lazy" data-field-src="thumbnail" data-field-alt="caption">
+                <span class="rc-gtile__play" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+                <span class="visually-hidden">Play video: Lakeside water-transfer installation</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4" data-item>
+              <a class="rc-gtile" href="assets/images/gallery/gallery-05.jpg" data-lightbox="gallery" data-type="image" data-caption="Pump fleet on a coastal dyke project" data-field-href="image_large" data-field-data-caption="caption">
+                <img src="assets/images/gallery/gallery-05.jpg" alt="Pump fleet on a coastal dyke project" width="1000" height="1000" loading="lazy" data-field-src="thumbnail" data-field-alt="caption">
+                <span class="rc-gtile__zoom" aria-hidden="true"><i class="bi bi-arrows-angle-expand"></i></span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4" data-item>
+              <a class="rc-gtile rc-gtile--video" href="assets/videos/sample-video-2.mp4" data-lightbox="gallery" data-type="video" data-poster="assets/images/gallery/gallery-06.jpg" data-caption="Coastal dyke pumping in operation" data-field-href="video_url" data-field-data-caption="caption">
+                <img src="assets/images/gallery/gallery-06.jpg" alt="Coastal dyke pumping in operation" width="1000" height="1000" loading="lazy" data-field-src="thumbnail" data-field-alt="caption">
+                <span class="rc-gtile__play" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+                <span class="visually-hidden">Play video: Coastal dyke pumping in operation</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4" data-item>
+              <a class="rc-gtile rc-gtile--video" href="assets/videos/sample-video-1.mp4" data-lightbox="gallery" data-type="video" data-poster="assets/images/gallery/gallery-07.jpg" data-caption="Foundation works with wellpoint dewatering" data-field-href="video_url" data-field-data-caption="caption">
+                <img src="assets/images/gallery/gallery-07.jpg" alt="Foundation works with wellpoint dewatering" width="1000" height="1000" loading="lazy" data-field-src="thumbnail" data-field-alt="caption">
+                <span class="rc-gtile__play" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+                <span class="visually-hidden">Play video: Foundation works with wellpoint dewatering</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4" data-item>
+              <a class="rc-gtile rc-gtile--video" href="assets/videos/sample-video-2.mp4" data-lightbox="gallery" data-type="video" data-poster="assets/images/gallery/gallery-08.jpg" data-caption="Deep excavation, close-up" data-field-href="video_url" data-field-data-caption="caption">
+                <img src="assets/images/gallery/gallery-08.jpg" alt="Deep excavation, close-up" width="1000" height="1000" loading="lazy" data-field-src="thumbnail" data-field-alt="caption">
+                <span class="rc-gtile__play" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+                <span class="visually-hidden">Play video: Deep excavation, close-up</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4" data-item>
+              <a class="rc-gtile" href="assets/images/gallery/gallery-09.jpg" data-lightbox="gallery" data-type="image" data-caption="Foundation slab site, dewatered and dry" data-field-href="image_large" data-field-data-caption="caption">
+                <img src="assets/images/gallery/gallery-09.jpg" alt="Foundation slab site, dewatered and dry" width="1000" height="1000" loading="lazy" data-field-src="thumbnail" data-field-alt="caption">
+                <span class="rc-gtile__zoom" aria-hidden="true"><i class="bi bi-arrows-angle-expand"></i></span>
+              </a>
+            </div>
+          </div>
+          <!-- END LOOP -->
+          <div class="text-center mt-5">
+            <!-- Next page link (keep the current filters). Hide on the last page. -->
+            <a href="gallery.html?page=2" class="btn rc-btn rc-btn-outline rc-load-more" data-load-more data-target="#galleryGrid">
+              <span class="spinner-border spinner-border-sm d-none" aria-hidden="true" data-slot="spinner"></span>
+              <span>Load More</span> <i class="bi bi-chevron-down"></i>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ================= LAYOUT: Footer ================= -->
+<!-- DYNAMIC (SETTINGS): company_about, address, contact_email, phone, social_* URLs -->
+<footer class="rc-footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <img src="assets/images/logo.png" alt="Racors" width="242" height="87" class="rc-footer__logo">
+        <p>Racors proudly stands as a leading Indian manufacturer, exporter, and importer of specialized dewatering pumps and high-performance fluid management equipment, serving industries across the globe.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3 class="rc-footer__head">Services</h3>
+        <ul class="rc-footer__links">
+          <li><a href="products.html">Product Ranges</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="services.html">Pump Sales</a></li>
+          <li><a href="services.html">Pump Hire</a></li>
+          <li><a href="services.html">Project Works</a></li>
+          <li><a href="services.html">Repair &amp; Services</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3 class="rc-footer__head">Quick Links</h3>
+        <ul class="rc-footer__links">
+          <li><a href="about.html">About us</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="/instock">Ready Stock</a></li>
+          <li><a href="/careers">Career</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h3 class="rc-footer__head">Contact Us</h3>
+        <address class="rc-footer__address" data-field="settings.address">
+          8/27 Rasi Garden, Coimbatore – 641109,<br>Tamil Nadu, India<br>
+          <a href="mailto:info@racors.in">info@racors.in</a><br>
+          <a href="tel:+917200076755">+91 72000 76755</a>
+        </address>
+        <div class="rc-social">
+          <a href="#" aria-label="Facebook" rel="noopener" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="YouTube" rel="noopener" target="_blank"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn" rel="noopener" target="_blank"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="Instagram" rel="noopener" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="X" rel="noopener" target="_blank"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rc-footer__bottom">
+      <p class="mb-0">© <span data-current-year>2026</span> Racors. All Rights Reserved <span class="mx-1">|</span> <i class="bi bi-clock"></i> 24/7 After Sales Support</p>
+      <p class="mb-0"><a href="/terms">Terms &amp; conditions</a> <span class="mx-1">|</span> <a href="/privacy">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+<!-- ================= COMPONENT: Enquiry / Quote modal =================
+     Opened by any element with  data-bs-toggle="modal" data-bs-target="#enquiryModal"
+       data-enquiry-type="general|quote|brochure"   sets the hidden `type` field + modal title
+       data-product-id="{id}"                       pre-selects the product
+     SUBMIT: normal HTML form POST to /enquiry (no AJAX). Field `name`s = database columns.
+     BACKEND after POST:
+       success -> redirect back with flash message; print it in [data-flash="success"] (remove .d-none)
+       errors  -> re-render page: old() values in inputs, add .is-invalid to the field,
+                  put the message in its .invalid-feedback, show [data-flash="error"].
+       The modal re-opens automatically on load when it contains a visible flash or .is-invalid.
+-->
+<div class="modal fade rc-modal" id="enquiryModal" data-lenis-prevent tabindex="-1" aria-labelledby="enquiryModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="enquiryModalTitle" data-title-general="Send an Enquiry" data-title-quote="Request a Quotation" data-title-brochure="Request a Brochure">Send an Enquiry</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="rc-form" id="enquiryForm" action="/enquiry" method="post" novalidate data-component="enquiry-form">
+          <!-- BACKEND: CSRF token (Laravel: @csrf) -->
+          <input type="hidden" name="_token" value="">
+          <!-- FLASH messages (server-rendered; remove .d-none to show) -->
+          <div class="alert alert-success rc-form__status d-none" role="status" data-flash="success">Thank you. Our team will contact you within one business day.</div>
+          <div class="alert alert-danger rc-form__status d-none" role="alert" data-flash="error">Please correct the highlighted fields.</div>
+
+          <input type="hidden" name="type" value="general">
+          <input type="hidden" name="source_page" value="">
+          <!-- Honeypot: real users never fill this. Reject on the server if not empty. -->
+          <div class="rc-hp" aria-hidden="true">
+            <label for="enq-website">Website</label>
+            <input type="text" id="enq-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="enq-name" class="form-label">Full name <span class="rc-req">*</span></label>
+              <input type="text" class="form-control" id="enq-name" name="name" required minlength="2" maxlength="120" autocomplete="name">
+              <div class="invalid-feedback" data-error-for="name">Please enter your name.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-company" class="form-label">Company</label>
+              <input type="text" class="form-control" id="enq-company" name="company" maxlength="160" autocomplete="organization">
+              <div class="invalid-feedback" data-error-for="company"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-phone" class="form-label">Phone / WhatsApp <span class="rc-req">*</span></label>
+              <input type="tel" class="form-control" id="enq-phone" name="phone" required pattern="^\+?[0-9\s\-]{7,20}$" autocomplete="tel" placeholder="+91 …">
+              <div class="invalid-feedback" data-error-for="phone">Please enter a valid phone number.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-email" class="form-label">Email <span class="rc-req">*</span></label>
+              <input type="email" class="form-control" id="enq-email" name="email" required maxlength="160" autocomplete="email">
+              <div class="invalid-feedback" data-error-for="email">Please enter a valid email.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-product" class="form-label">Product of interest</label>
+              <select class="form-select" id="enq-product" name="product_id">
+                <option value="">Not sure / General</option>
+                <!-- LOOP: products (all active) -> <option value="{id}">{title}</option> -->
+                <option value="1">Dewatering Pumps</option>
+                <option value="2">Submersible Pumps</option>
+                <option value="3">Trailer Dewatering Pumps</option>
+                <option value="4">Wellpoint Dewatering Pumps</option>
+                <!-- END LOOP -->
+              </select>
+              <div class="invalid-feedback" data-error-for="product_id"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-service" class="form-label">Requirement</label>
+              <select class="form-select" id="enq-service" name="requirement">
+                <option value="purchase">Purchase</option>
+                <option value="rental">Rental</option>
+                <option value="project">Project / turnkey</option>
+                <option value="repair">Repair &amp; maintenance</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="enq-message" class="form-label">Message <span class="rc-req">*</span></label>
+              <textarea class="form-control" id="enq-message" name="message" rows="4" required minlength="10" maxlength="2000" placeholder="Site location, flow / head required, duration…"></textarea>
+              <div class="invalid-feedback" data-error-for="message">Please tell us a little about your requirement (min. 10 characters).</div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="enq-consent" name="consent" value="1" required>
+                <label class="form-check-label" for="enq-consent">I agree to be contacted about this enquiry and accept the <a href="/privacy" target="_blank">Privacy Policy</a>.</label>
+                <div class="invalid-feedback" data-error-for="consent">Please accept to continue.</div>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="d-flex justify-content-end gap-2 mt-4">
+            <button type="button" class="btn rc-btn rc-btn-outline" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn rc-btn rc-btn-primary">
+              <span class="spinner-border spinner-border-sm d-none" aria-hidden="true" data-slot="spinner"></span>
+              <span data-slot="label">Submit Enquiry</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ================= COMPONENT: Floating contact (speed-dial) =================
+     Click the round button -> WhatsApp + Call buttons rise up; the chat icon swipes into a close (X).
+     Click again, press Esc or click anywhere else to close. Labels' letters roll on hover (morph swipe).
+     DYNAMIC (SETTINGS): whatsapp_number (+ optional prefilled text), sales_phone
+-->
+<div class="rc-fab" data-component="fab">
+  <ul class="rc-fab__menu" id="rcFabMenu" aria-label="Contact options">
+    <li>
+      <a class="rc-fab__item rc-fab__item--wa" href="https://wa.me/917540086315?text=Hi%20Racors%2C%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener" data-field-href="settings.whatsapp_link">
+        <span class="rc-fab__label">WhatsApp</span>
+        <span class="rc-fab__icon" aria-hidden="true"><i class="bi bi-whatsapp"></i></span>
+      </a>
+    </li>
+    <li>
+      <a class="rc-fab__item rc-fab__item--call" href="tel:+917540086755" data-field-href="settings.sales_phone">
+        <span class="rc-fab__label">Call us</span>
+        <span class="rc-fab__icon" aria-hidden="true"><i class="bi bi-telephone"></i></span>
+      </a>
+    </li>
+  </ul>
+  <button type="button" class="rc-fab__toggle" aria-expanded="false" aria-controls="rcFabMenu" aria-label="Contact us" data-label-open="Contact us" data-label-close="Close contact options">
+    <span class="rc-fab__swap" aria-hidden="true">
+      <i class="bi bi-chat-dots-fill"></i>
+      <i class="bi bi-x-lg"></i>
+    </span>
+  </button>
+</div>
+<!-- Vendor JS (Bootstrap bundle includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+<!-- Hero slider -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@14.4.0/swiper-bundle.min.js" defer></script>
+<!-- Smooth (inertia) scrolling -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" defer></script>
+<!-- App JS -->
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

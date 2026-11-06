@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Racors</title>
+  <link rel="icon" href="assets/images/favicon.png">
+  <!-- Mark JS as available before first paint (enables loader + animations without a flash) -->
+  <script>document.documentElement.classList.replace("no-js", "js"); document.documentElement.classList.add("is-loading");</script>
+
+  <!-- Fonts + vendor CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/swiper@14.4.0/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- App CSS -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body data-page="home">
+
+<!-- ================= COMPONENT: Page loader =================
+     Shown until the page (images, fonts) has loaded, then slides away.
+     Hidden automatically without JavaScript. -->
+<div class="rc-preloader" id="rcPreloader" role="status" aria-live="polite">
+  <div class="rc-preloader__inner">
+    <img src="assets/images/logo-white.png" alt="" width="186" height="59" class="rc-preloader__logo">
+    <div class="rc-preloader__bar" aria-hidden="true"><span id="rcPreloaderBar"></span></div>
+    <span class="visually-hidden">Loading…</span>
+  </div>
+</div>
+
+<!-- ================= LAYOUT: Header / main navigation ================= -->
+<a class="visually-hidden-focusable rc-skip" href="#main">Skip to content</a>
+
+<header class="rc-header" id="top" data-component="header">
+  <nav class="navbar navbar-expand-xl" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand rc-brand" href="index.html">
+        <img src="assets/images/logo-white.png" alt="Racors" width="186" height="59">
+      </a>
+
+      <button class="navbar-toggler rc-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#rcMenu" aria-controls="rcMenu" aria-label="Open menu">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="offcanvas offcanvas-end rc-offcanvas" tabindex="-1" id="rcMenu" data-lenis-prevent aria-labelledby="rcMenuLabel">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h6 mb-0" id="rcMenuLabel">Menu</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body align-items-xl-center">
+          <!-- BACKEND: menu items can come from a CMS menu; mark the current page with .active + aria-current="page" -->
+          <ul class="navbar-nav ms-xl-auto rc-nav">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="products.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+              <ul class="dropdown-menu rc-dropdown">
+                <li><a class="dropdown-item" href="products.html">Dewatering Pumps</a></li>
+                <li><a class="dropdown-item" href="products.html">Submersible Pumps</a></li>
+                <li><a class="dropdown-item" href="products.html">Spares</a></li>
+                <li><a class="dropdown-item" href="products.html">Fittings &amp; Hoses</a></li>
+                <li><a class="dropdown-item" href="products.html">Gensets &amp; Towerlights</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="industries.html">Industries</a></li>
+            <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="/instock">Instock</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="/blogs">Blogs</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle rc-lang" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="rc-flag" aria-hidden="true">🇺🇸</span> Eng
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end rc-dropdown">
+                <li><a class="dropdown-item" href="?lang=en">English</a></li>
+                <li><a class="dropdown-item" href="?lang=ar">العربية</a></li>
+              </ul>
+            </li>
+          </ul>
+          <button type="button" class="btn rc-btn rc-btn-white ms-xl-3 mt-3 mt-xl-0"
+                  data-bs-toggle="modal" data-bs-target="#enquiryModal" data-enquiry-type="general">Send Enquiry</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- ================= SECTION: Hero slider =================
+       DYNAMIC
+         LOOP hero_slides -> one .swiper-slide[data-item] per slide   (table: hero_slides, ORDER BY sort_order)
+         Fields: image, image_alt, title (may contain <br>), lead, button1_label/url, button2_label/url
+         First slide: <h1 id="hero-title">, image fetchpriority="high".  Other slides: <h2>, image loading="lazy".
+         With only 1 slide the arrows/dots/autoplay switch off automatically.
+       Behaviour: Swiper – horizontal slide + parallax (background moves slower than the slide,
+         text layers move at different speeds), autoplay 6 s (pauses on hover), swipe, keyboard, dots, arrows.
+  -->
+  <section class="rc-hero" aria-labelledby="hero-title" aria-roledescription="carousel">
+    <div class="swiper rc-hero-slider" id="heroSlider" data-component="hero-slider">
+      <!-- LOOP: hero_slides -->
+      <div class="swiper-wrapper" data-loop="hero_slides">
+        <div class="swiper-slide rc-hero-slide" data-item>
+          <div class="rc-hero-slide__bg" data-swiper-parallax="35%">
+            <img class="rc-hero-slide__img" src="assets/images/hero-1.jpg" alt="Industrial pump machinery" width="1600" height="900" fetchpriority="high" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <div class="container">
+            <div class="rc-hero__content">
+              <h1 id="hero-title" class="rc-hero__title" data-swiper-parallax="-320" data-swiper-parallax-opacity="0" data-field="title">Keep Water Moving.<br>Keep Your Project Moving.</h1>
+              <p class="rc-hero__lead" data-swiper-parallax="-220" data-swiper-parallax-opacity="0" data-field="lead">Precision-engineered industrial equipment for heavy loads, operations, and demanding environments.</p>
+              <div class="d-flex flex-wrap gap-3 rc-hero__actions" data-swiper-parallax="-140" data-swiper-parallax-opacity="0">
+                <a href="#equipment" class="btn rc-btn rc-btn-primary" data-field="button1_label" data-field-href="button1_url">Explore Dewatering Solutions</a>
+                <a href="#contact" class="btn rc-btn rc-btn-white-outline" data-field-href="button2_url"><span data-field="button2_label">Contact Us</span> <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide rc-hero-slide" data-item>
+          <div class="rc-hero-slide__bg" data-swiper-parallax="35%">
+            <img class="rc-hero-slide__img" src="assets/images/hero-2.jpg" alt="Aerial view of a city construction site" width="1600" height="900" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <div class="container">
+            <div class="rc-hero__content">
+              <h2 class="rc-hero__title" data-swiper-parallax="-320" data-swiper-parallax-opacity="0" data-field="title">Dewatering for Sites<br>That Can't Wait.</h2>
+              <p class="rc-hero__lead" data-swiper-parallax="-220" data-swiper-parallax-opacity="0" data-field="lead">Trailer-mounted diesel pumps for excavations, foundations and tunnels: buy, rent or hand us the whole job.</p>
+              <div class="d-flex flex-wrap gap-3 rc-hero__actions" data-swiper-parallax="-140" data-swiper-parallax-opacity="0">
+                <a href="#industry-construction" class="btn rc-btn rc-btn-primary" data-field="button1_label" data-field-href="button1_url">Construction Solutions</a>
+                <a href="#services" class="btn rc-btn rc-btn-white-outline" data-field-href="button2_url"><span data-field="button2_label">Our Services</span> <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide rc-hero-slide" data-item>
+          <div class="rc-hero-slide__bg" data-swiper-parallax="35%">
+            <img class="rc-hero-slide__img" src="assets/images/hero-3.jpg" alt="Orange dewatering pumps working on a mining site" width="1600" height="900" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <div class="container">
+            <div class="rc-hero__content">
+              <h2 class="rc-hero__title" data-swiper-parallax="-320" data-swiper-parallax-opacity="0" data-field="title">Pumps That Run<br>Around the Clock.</h2>
+              <p class="rc-hero__lead" data-swiper-parallax="-220" data-swiper-parallax-opacity="0" data-field="lead">A ready rental fleet and 24/7 after-sales support for mining, quarry and flood relief.</p>
+              <div class="d-flex flex-wrap gap-3 rc-hero__actions" data-swiper-parallax="-140" data-swiper-parallax-opacity="0">
+                <a href="#equipment" class="btn rc-btn rc-btn-primary" data-field="button1_label" data-field-href="button1_url">View Rental Fleet</a>
+                <a href="#contact" class="btn rc-btn rc-btn-white-outline" data-field-href="button2_url"><span data-field="button2_label">Get a Quote</span> <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END LOOP -->
+
+      <!-- Controls -->
+      <div class="rc-hero-controls">
+        <div class="container d-flex align-items-center justify-content-between gap-3">
+          <div class="rc-hero-pagination" aria-label="Choose slide"></div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="rc-hero-counter" aria-hidden="true"><b class="rc-hero-counter__current">01</b> / <span class="rc-hero-counter__total">03</span></span>
+            <button type="button" class="rc-hero-nav rc-hero-nav--prev" aria-label="Previous slide"><i class="bi bi-arrow-left"></i></button>
+            <button type="button" class="rc-hero-nav rc-hero-nav--next" aria-label="Next slide"><i class="bi bi-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= SECTION: Who we are ================= -->
+  <section class="rc-section" id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-lg-6 rc-reveal">
+          <span class="rc-eyebrow">Who we are</span>
+          <h2 id="about-title" class="rc-h2">India's dewatering pump manufacturer trusted on sites worldwide</h2>
+        </div>
+        <div class="col-lg-5 offset-lg-1 rc-reveal">
+          <p class="rc-lead mb-0">Racors designs, manufactures and exports high-performance dewatering pumps and fluid-management equipment. From a single trailer pump to a complete site package, we keep water out of the way so your project stays on schedule.</p>
+        </div>
+      </div>
+
+      <p class="rc-sublabel">Built for projects that are</p>
+      <!-- Component: image-tile (C3). Static content; repeat the .col block per tile. -->
+      <div class="row g-3 g-lg-4">
+        <div class="col-12 col-sm-6 col-lg-3 rc-reveal">
+          <a href="industries.html" class="rc-tile">
+            <img src="assets/images/tile-dewatering.jpg" alt="Orange dewatering pumps on a mining site" width="398" height="267" loading="lazy">
+            <span class="rc-tile__label">Dewatering Pumps</span>
+          </a>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 rc-reveal">
+          <a href="industries.html" class="rc-tile">
+            <img src="assets/images/tile-construction.jpg" alt="Aerial view of an urban construction site" width="398" height="267" loading="lazy">
+            <span class="rc-tile__label">Construction</span>
+          </a>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 rc-reveal">
+          <a href="industries.html" class="rc-tile">
+            <img src="assets/images/tile-mining.jpg" alt="Pumps working at a mine and quarry" width="398" height="267" loading="lazy">
+            <span class="rc-tile__label">Mining &amp; Quarry</span>
+          </a>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 rc-reveal">
+          <a href="industries.html" class="rc-tile">
+            <img src="assets/images/tile-wastewater.jpg" alt="Pumps handling waste water" width="398" height="267" loading="lazy">
+            <span class="rc-tile__label">Waste Water</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= SECTION: Equipment =================
+       DYNAMIC
+         LOOP featured_products   -> one .col[data-item] per product   (table: products, is_featured = 1, max 4)
+         LOOP categories          -> one panel per category            (tables: categories + category_items)
+       Field legend: data-field="x" = text, data-field-href / -src / -alt = attribute. See README.md
+  -->
+  <section class="rc-section pt-0" id="equipment" aria-labelledby="equipment-title">
+    <div class="container">
+      <div class="rc-section-header rc-reveal">
+        <div>
+          <span class="rc-eyebrow">Equipment</span>
+          <h2 id="equipment-title" class="rc-h2 mb-0">A Complete Dewatering Solution</h2>
+        </div>
+        <a href="products.html" class="btn rc-btn rc-btn-primary">View All Products</a>
+      </div>
+
+      <!-- LOOP: featured_products -->
+      <div class="row g-4" data-loop="featured_products">
+        <div class="col-sm-6 col-lg-3" data-item>
+          <article class="rc-product">
+            <a class="rc-product__media" href="product-detail.html" data-field-href="url">
+              <img src="assets/images/product-1.jpg" alt="Dewatering Pumps trailer-mounted diesel set" width="373" height="252" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+            </a>
+            <div class="rc-product__body">
+              <span class="rc-product__meta"><span data-field="product_count">24</span> products</span>
+              <h3 class="rc-product__title" data-field="title">Dewatering Pumps</h3>
+              <p class="rc-product__desc" data-field="short_description">Trailer-Mounted Diesel Sets For High-Volume, Solids-Laden Water.</p>
+              <div class="rc-product__actions">
+                <button type="button" class="btn rc-btn rc-btn-dark rc-btn-sm" data-bs-toggle="modal" data-bs-target="#enquiryModal"
+                        data-enquiry-type="quote" data-product-id="1" data-field-data-product-id="id">Get a Quote</button>
+                <!-- IF brochure_pdf -->
+                <a class="btn rc-btn rc-btn-ghost-sm" href="/downloads/brochures/dewatering-pumps.pdf" download data-field-href="brochure_pdf">Brochure <i class="bi bi-download"></i></a>
+                <!-- END IF -->
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-item>
+          <article class="rc-product">
+            <a class="rc-product__media" href="product-detail.html" data-field-href="url">
+              <img src="assets/images/product-2.jpg" alt="Submersible Pumps trailer-mounted diesel set" width="373" height="252" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+            </a>
+            <div class="rc-product__body">
+              <span class="rc-product__meta"><span data-field="product_count">24</span> products</span>
+              <h3 class="rc-product__title" data-field="title">Submersible Pumps</h3>
+              <p class="rc-product__desc" data-field="short_description">Trailer-Mounted Diesel Sets For High-Volume, Solids-Laden Water.</p>
+              <div class="rc-product__actions">
+                <button type="button" class="btn rc-btn rc-btn-dark rc-btn-sm" data-bs-toggle="modal" data-bs-target="#enquiryModal"
+                        data-enquiry-type="quote" data-product-id="2" data-field-data-product-id="id">Get a Quote</button>
+                <!-- IF brochure_pdf -->
+                <a class="btn rc-btn rc-btn-ghost-sm" href="/downloads/brochures/submersible-pumps.pdf" download data-field-href="brochure_pdf">Brochure <i class="bi bi-download"></i></a>
+                <!-- END IF -->
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-item>
+          <article class="rc-product">
+            <a class="rc-product__media" href="product-detail.html" data-field-href="url">
+              <img src="assets/images/product-3.jpg" alt="Dewatering Pumps trailer-mounted diesel set" width="373" height="252" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+            </a>
+            <div class="rc-product__body">
+              <span class="rc-product__meta"><span data-field="product_count">24</span> products</span>
+              <h3 class="rc-product__title" data-field="title">Dewatering Pumps</h3>
+              <p class="rc-product__desc" data-field="short_description">Trailer-Mounted Diesel Sets For High-Volume, Solids-Laden Water.</p>
+              <div class="rc-product__actions">
+                <button type="button" class="btn rc-btn rc-btn-dark rc-btn-sm" data-bs-toggle="modal" data-bs-target="#enquiryModal"
+                        data-enquiry-type="quote" data-product-id="3" data-field-data-product-id="id">Get a Quote</button>
+                <!-- IF brochure_pdf -->
+                <a class="btn rc-btn rc-btn-ghost-sm" href="/downloads/brochures/trailer-dewatering-pumps.pdf" download data-field-href="brochure_pdf">Brochure <i class="bi bi-download"></i></a>
+                <!-- END IF -->
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-item>
+          <article class="rc-product">
+            <a class="rc-product__media" href="product-detail.html" data-field-href="url">
+              <img src="assets/images/product-4.jpg" alt="Dewatering Pumps trailer-mounted diesel set" width="373" height="252" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+            </a>
+            <div class="rc-product__body">
+              <span class="rc-product__meta"><span data-field="product_count">24</span> products</span>
+              <h3 class="rc-product__title" data-field="title">Dewatering Pumps</h3>
+              <p class="rc-product__desc" data-field="short_description">Trailer-Mounted Diesel Sets For High-Volume, Solids-Laden Water.</p>
+              <div class="rc-product__actions">
+                <button type="button" class="btn rc-btn rc-btn-dark rc-btn-sm" data-bs-toggle="modal" data-bs-target="#enquiryModal"
+                        data-enquiry-type="quote" data-product-id="4" data-field-data-product-id="id">Get a Quote</button>
+                <!-- IF brochure_pdf -->
+                <a class="btn rc-btn rc-btn-ghost-sm" href="/downloads/brochures/wellpoint-dewatering-pumps.pdf" download data-field-href="brochure_pdf">Brochure <i class="bi bi-download"></i></a>
+                <!-- END IF -->
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <!-- END LOOP -->
+
+      <!-- LOOP: categories -->
+      <div class="row g-4 mt-1" data-loop="categories">
+        <div class="col-lg-4 rc-reveal" data-item>
+          <div class="rc-cat">
+            <h3 class="rc-cat__title" data-field="title">Keep Them Running</h3>
+            <p class="rc-cat__sub" data-field="subtitle">Wear parts and engine spares, matched to your pump.</p>
+            <!-- LOOP: category.items  (add .rc-cat-link--sm when the category has 3+ items) -->
+            <div data-loop="category.items">
+            <a href="products.html" class="rc-cat-link" data-item data-field-href="url">
+              <span data-field="label">Pump Spares</span><small><span data-field="count_label">20 Parts</span> <i class="bi bi-arrow-right"></i></small>
+            </a>
+            <a href="products.html" class="rc-cat-link" data-item data-field-href="url">
+              <span data-field="label">Engine Spares</span><small><span data-field="count_label">16 Parts</span> <i class="bi bi-arrow-right"></i></small>
+            </a>
+            </div>
+            <!-- END LOOP -->
+          </div>
+        </div>
+        <div class="col-lg-4 rc-reveal" data-item>
+          <div class="rc-cat">
+            <h3 class="rc-cat__title" data-field="title">Connect The Line</h3>
+            <p class="rc-cat__sub" data-field="subtitle">Flanges, fittings and hoses for suction and discharge.</p>
+            <!-- LOOP: category.items  (add .rc-cat-link--sm when the category has 3+ items) -->
+            <div data-loop="category.items">
+            <a href="products.html" class="rc-cat-link" data-item data-field-href="url">
+              <span data-field="label">Fittings</span><small><span data-field="count_label">20 Products</span> <i class="bi bi-arrow-right"></i></small>
+            </a>
+            <a href="products.html" class="rc-cat-link" data-item data-field-href="url">
+              <span data-field="label">Hoses</span><small><span data-field="count_label">16 Products</span> <i class="bi bi-arrow-right"></i></small>
+            </a>
+            </div>
+            <!-- END LOOP -->
+          </div>
+        </div>
+        <div class="col-lg-4 rc-reveal" data-item>
+          <div class="rc-cat">
+            <h3 class="rc-cat__title" data-field="title">Power The Site</h3>
+            <p class="rc-cat__sub" data-field="subtitle">Generators, lighting and drilling for the rest of the job.</p>
+            <!-- LOOP: category.items  (add .rc-cat-link--sm when the category has 3+ items) -->
+            <div data-loop="category.items">
+            <a href="products.html" class="rc-cat-link rc-cat-link--sm" data-item data-field-href="url">
+              <span data-field="label">Gensets</span><small><span data-field="count_label">20</span> <i class="bi bi-arrow-right"></i></small>
+            </a>
+            <a href="products.html" class="rc-cat-link rc-cat-link--sm" data-item data-field-href="url">
+              <span data-field="label">Towerlights</span><small><span data-field="count_label">16</span> <i class="bi bi-arrow-right"></i></small>
+            </a>
+            <a href="products.html" class="rc-cat-link rc-cat-link--sm" data-item data-field-href="url">
+              <span data-field="label">Drilling Machines</span><small><span data-field="count_label">16</span> <i class="bi bi-arrow-right"></i></small>
+            </a>
+            </div>
+            <!-- END LOOP -->
+          </div>
+        </div>
+      </div>
+      <!-- END LOOP -->
+    </div>
+  </section>
+  <!-- ================= SECTION: Services =================
+       Static content (4 fixed services). Component: service-card (C7).
+  -->
+  <section class="rc-section rc-bg-surface" id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="rc-section-header rc-reveal">
+        <div>
+          <span class="rc-eyebrow">Our services</span>
+          <h2 id="services-title" class="rc-h2 mb-0 rc-h2--narrow">Buy it, hire it, or hand us the whole job.</h2>
+        </div>
+        <a href="services.html" class="btn rc-btn rc-btn-outline">View All Services <i class="bi bi-arrow-right"></i></a>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3 rc-reveal">
+          <article class="rc-service">
+            <span class="rc-service__icon"><i class="bi bi-cart3"></i></span>
+            <h3 class="rc-service__title">Sales</h3>
+            <p>High-quality dewatering and pumping equipment tailored to meet diverse project needs.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-3 rc-reveal">
+          <article class="rc-service">
+            <span class="rc-service__icon"><i class="bi bi-cone-striped"></i></span>
+            <h3 class="rc-service__title">Project Solutions</h3>
+            <p>Complete turnkey dewatering and pumping solutions from design to execution.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-3 rc-reveal">
+          <article class="rc-service">
+            <span class="rc-service__icon"><i class="bi bi-calendar-check"></i></span>
+            <h3 class="rc-service__title">Rentals</h3>
+            <p>Flexible short- and long-term pump rental options for cost-effective operations.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-3 rc-reveal">
+          <article class="rc-service">
+            <span class="rc-service__icon"><i class="bi bi-wrench"></i></span>
+            <h3 class="rc-service__title">Repairs &amp; Maintenance</h3>
+            <p>Keep your pumps operating efficiently and minimize downtime.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= SECTION: Industries served =================
+       DYNAMIC
+         LOOP industries (twice, same order): tab buttons + tab panes   (table: industries)
+         The FIRST item gets: tab .active aria-selected="true" (no tabindex) / pane "show active".
+         Ids must match: tab-{slug}  <->  industry-{slug}
+       Behaviour: Bootstrap 5 tabs (keyboard + ARIA built in). Deep link: /#industry-{slug}
+  -->
+  <section class="rc-section" id="industries" aria-labelledby="industries-title">
+    <div class="container">
+      <div class="rc-reveal">
+        <span class="rc-eyebrow">Industries served</span>
+        <h2 id="industries-title" class="rc-h2">Whatever water stops the work</h2>
+      </div>
+
+      <!-- LOOP: industries (tabs) -->
+      <div class="rc-tabs" role="tablist" aria-label="Industries" data-loop="industries">
+        <button type="button" class="rc-tab active" role="tab" id="tab-construction" data-bs-toggle="tab" data-bs-target="#industry-construction"
+                aria-controls="industry-construction" aria-selected="true" data-item data-field="name">Construction</button>
+        <button type="button" class="rc-tab" role="tab" id="tab-oil-gas" data-bs-toggle="tab" data-bs-target="#industry-oil-gas"
+                aria-controls="industry-oil-gas" aria-selected="false" tabindex="-1" data-item data-field="name">Oil &amp; Gas</button>
+        <button type="button" class="rc-tab" role="tab" id="tab-marine" data-bs-toggle="tab" data-bs-target="#industry-marine"
+                aria-controls="industry-marine" aria-selected="false" tabindex="-1" data-item data-field="name">Marine</button>
+        <button type="button" class="rc-tab" role="tab" id="tab-mining" data-bs-toggle="tab" data-bs-target="#industry-mining"
+                aria-controls="industry-mining" aria-selected="false" tabindex="-1" data-item data-field="name">Mining &amp; Quarry</button>
+        <button type="button" class="rc-tab" role="tab" id="tab-wastewater" data-bs-toggle="tab" data-bs-target="#industry-wastewater"
+                aria-controls="industry-wastewater" aria-selected="false" tabindex="-1" data-item data-field="name">Waste Water</button>
+        <button type="button" class="rc-tab" role="tab" id="tab-irrigation" data-bs-toggle="tab" data-bs-target="#industry-irrigation"
+                aria-controls="industry-irrigation" aria-selected="false" tabindex="-1" data-item data-field="name">Irrigation</button>
+        <button type="button" class="rc-tab" role="tab" id="tab-flood-relief" data-bs-toggle="tab" data-bs-target="#industry-flood-relief"
+                aria-controls="industry-flood-relief" aria-selected="false" tabindex="-1" data-item data-field="name">Flood Relief</button>
+      </div>
+      <!-- END LOOP -->
+
+      <!-- LOOP: industries (panels) -->
+      <div class="tab-content" data-loop="industries">
+        <div class="tab-pane fade rc-industry show active" id="industry-construction" role="tabpanel" aria-labelledby="tab-construction" tabindex="0" data-item>
+          <div class="rc-industry__media">
+            <img src="assets/images/industry-construction.jpg" alt="Construction project site" width="777" height="603" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <div>
+            <h3 class="rc-industry__title" data-field="title">Construction Dewatering Solutions</h3>
+            <p data-field="description">Construction dewatering plays a crucial role across industries by efficiently removing water from construction sites, mines, and other waterlogged areas.</p>
+            <p class="rc-industry__label">Key Applications</p>
+            <!-- LOOP: industry.applications -->
+            <ul class="rc-check" data-loop="industry.applications">
+              <li data-item>Excavation sites</li>
+              <li data-item>Foundation pits</li>
+              <li data-item>Tunnels and subways</li>
+              <li data-item>Road and bridge construction</li>
+            </ul>
+            <!-- END LOOP -->
+            <a href="industry-detail.html" class="btn rc-btn rc-btn-outline" data-field-href="url">Read More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="tab-pane fade rc-industry" id="industry-oil-gas" role="tabpanel" aria-labelledby="tab-oil-gas" tabindex="0" data-item>
+          <div class="rc-industry__media">
+            <img src="assets/images/industry-construction.jpg" alt="Oil &amp; Gas project site" width="777" height="603" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <div>
+            <h3 class="rc-industry__title" data-field="title">Oil &amp; Gas Pumping Solutions</h3>
+            <p data-field="description">Reliable pumping for upstream and downstream facilities, refineries and pipeline projects.</p>
+            <p class="rc-industry__label">Key Applications</p>
+            <!-- LOOP: industry.applications -->
+            <ul class="rc-check" data-loop="industry.applications">
+              <li data-item>Pipeline hydro-testing</li>
+              <li data-item>Tank cleaning and transfer</li>
+              <li data-item>Produced water handling</li>
+              <li data-item>Refinery shutdowns</li>
+            </ul>
+            <!-- END LOOP -->
+            <a href="industry-detail.html" class="btn rc-btn rc-btn-outline" data-field-href="url">Read More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="tab-pane fade rc-industry" id="industry-marine" role="tabpanel" aria-labelledby="tab-marine" tabindex="0" data-item>
+          <div class="rc-industry__media">
+            <img src="assets/images/industry-construction.jpg" alt="Marine project site" width="777" height="603" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <div>
+            <h3 class="rc-industry__title" data-field="title">Marine &amp; Port Dewatering</h3>
+            <p data-field="description">Heavy-duty pumps for dry docks, ports and coastal works, built for saltwater and continuous duty.</p>
+            <p class="rc-industry__label">Key Applications</p>
+            <!-- LOOP: industry.applications -->
+            <ul class="rc-check" data-loop="industry.applications">
+              <li data-item>Dry dock dewatering</li>
+              <li data-item>Cofferdams</li>
+              <li data-item>Ballast water transfer</li>
+              <li data-item>Port construction</li>
+            </ul>
+            <!-- END LOOP -->
+            <a href="industry-detail.html" class="btn rc-btn rc-btn-outline" data-field-href="url">Read More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="tab-pane fade rc-industry" id="industry-mining" role="tabpanel" aria-labelledby="tab-mining" tabindex="0" data-item>
+          <div class="rc-industry__media">
+            <img src="assets/images/industry-construction.jpg" alt="Mining &amp; Quarry project site" width="777" height="603" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <div>
+            <h3 class="rc-industry__title" data-field="title">Mining &amp; Quarry Dewatering</h3>
+            <p data-field="description">Solids-handling pumps that keep open pits and quarries dry and productive, around the clock.</p>
+            <p class="rc-industry__label">Key Applications</p>
+            <!-- LOOP: industry.applications -->
+            <ul class="rc-check" data-loop="industry.applications">
+              <li data-item>Open-pit dewatering</li>
+              <li data-item>Sump pumping</li>
+              <li data-item>Slurry transfer</li>
+              <li data-item>Tailings management</li>
+            </ul>
+            <!-- END LOOP -->
+            <a href="industry-detail.html" class="btn rc-btn rc-btn-outline" data-field-href="url">Read More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="tab-pane fade rc-industry" id="industry-wastewater" role="tabpanel" aria-labelledby="tab-wastewater" tabindex="0" data-item>
+          <div class="rc-industry__media">
+            <img src="assets/images/industry-construction.jpg" alt="Waste Water project site" width="777" height="603" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <div>
+            <h3 class="rc-industry__title" data-field="title">Waste Water Pumping</h3>
+            <p data-field="description">Bypass and transfer pumping for municipal and industrial waste water networks.</p>
+            <p class="rc-industry__label">Key Applications</p>
+            <!-- LOOP: industry.applications -->
+            <ul class="rc-check" data-loop="industry.applications">
+              <li data-item>Sewer bypass</li>
+              <li data-item>Lift station backup</li>
+              <li data-item>Sludge transfer</li>
+              <li data-item>Treatment plant maintenance</li>
+            </ul>
+            <!-- END LOOP -->
+            <a href="industry-detail.html" class="btn rc-btn rc-btn-outline" data-field-href="url">Read More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="tab-pane fade rc-industry" id="industry-irrigation" role="tabpanel" aria-labelledby="tab-irrigation" tabindex="0" data-item>
+          <div class="rc-industry__media">
+            <img src="assets/images/industry-construction.jpg" alt="Irrigation project site" width="777" height="603" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <div>
+            <h3 class="rc-industry__title" data-field="title">Irrigation Pumping</h3>
+            <p data-field="description">Fuel-efficient, high-flow diesel sets that move water over long distances for agriculture.</p>
+            <p class="rc-industry__label">Key Applications</p>
+            <!-- LOOP: industry.applications -->
+            <ul class="rc-check" data-loop="industry.applications">
+              <li data-item>Canal lifting</li>
+              <li data-item>Field flood irrigation</li>
+              <li data-item>Reservoir transfer</li>
+              <li data-item>Drip system supply</li>
+            </ul>
+            <!-- END LOOP -->
+            <a href="industry-detail.html" class="btn rc-btn rc-btn-outline" data-field-href="url">Read More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="tab-pane fade rc-industry" id="industry-flood-relief" role="tabpanel" aria-labelledby="tab-flood-relief" tabindex="0" data-item>
+          <div class="rc-industry__media">
+            <img src="assets/images/industry-construction.jpg" alt="Flood Relief project site" width="777" height="603" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+          </div>
+          <div>
+            <h3 class="rc-industry__title" data-field="title">Flood Relief &amp; Emergency Response</h3>
+            <p data-field="description">Rapid-deployment high-volume pumps to clear floodwater from cities, highways and critical infrastructure.</p>
+            <p class="rc-industry__label">Key Applications</p>
+            <!-- LOOP: industry.applications -->
+            <ul class="rc-check" data-loop="industry.applications">
+              <li data-item>Urban flood clearing</li>
+              <li data-item>Underpass dewatering</li>
+              <li data-item>Emergency standby</li>
+              <li data-item>Disaster response</li>
+            </ul>
+            <!-- END LOOP -->
+            <a href="industry-detail.html" class="btn rc-btn rc-btn-outline" data-field-href="url">Read More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- END LOOP -->
+    </div>
+  </section>
+  <!-- ================= SECTION: Client network + testimonials =================
+       DYNAMIC
+         LOOP regions       -> filter buttons     (table: regions)        data-region = region slug
+         LOOP clients       -> logo wall          (table: clients)        data-region must match a region slug
+         LOOP testimonials  -> slider cards       (table: testimonials)   no avatar -> print initials in .rc-quote__avatar
+  -->
+  <section class="rc-section rc-bg-surface" id="clients" aria-labelledby="clients-title">
+    <div class="container">
+      <div class="rc-section-header rc-reveal">
+        <div>
+          <span class="rc-eyebrow">Client network</span>
+          <h2 id="clients-title" class="rc-h2 mb-0 rc-h2--narrow">Trusted by global energy and infrastructure leaders</h2>
+        </div>
+        <!-- LOOP: regions -->
+        <div class="rc-tabs rc-tabs--sm mb-0" role="group" aria-label="Filter clients by region" data-component="region-filter" data-loop="regions">
+          <button type="button" class="rc-tab" aria-pressed="false" data-region="middle-east" data-item data-field="label" data-field-data-region="slug">Middle East</button>
+          <button type="button" class="rc-tab" aria-pressed="false" data-region="africa" data-item data-field="label" data-field-data-region="slug">Africa</button>
+          <button type="button" class="rc-tab" aria-pressed="false" data-region="europe" data-item data-field="label" data-field-data-region="slug">Europe</button>
+          <button type="button" class="rc-tab" aria-pressed="false" data-region="asia" data-item data-field="label" data-field-data-region="slug">Asia</button>
+        </div>
+        <!-- END LOOP -->
+      </div>
+
+      <!-- LOOP: clients -->
+      <div class="rc-logos rc-reveal" id="logoGrid" data-loop="clients">
+        <div class="rc-logo" data-region="europe" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-01.png" alt="Archer logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="middle-east" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-02.png" alt="Halliburton logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="europe" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-03.png" alt="Expro logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="asia" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-04.png" alt="COSL logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="middle-east" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-05.png" alt="SLB logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="middle-east" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-06.png" alt="NEOM logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="middle-east" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-07.png" alt="NEOM logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="middle-east" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-08.png" alt="Weatherford logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="middle-east" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-09.png" alt="Saudi Electricity Company logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="middle-east" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-10.png" alt="FIFA World Cup Qatar 2022 logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="africa" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-11.png" alt="NOV logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="africa" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-12.png" alt="Baker Hughes logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="middle-east" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-13.png" alt="ADNOC logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+        <div class="rc-logo" data-region="middle-east" data-item data-field-data-region="region">
+          <img src="assets/images/clients/client-14.png" alt="ADNOC logo" width="216" height="140" loading="lazy" data-field-src="logo" data-field-alt="name">
+        </div>
+      </div>
+      <!-- END LOOP -->
+
+      <div class="rc-testimonials rc-reveal" data-component="testimonial-slider">
+        <button class="rc-round-btn rc-round-btn--prev" type="button" aria-label="Previous testimonial" data-dir="-1"><i class="bi bi-arrow-left"></i></button>
+        <!-- LOOP: testimonials -->
+        <div class="rc-testimonials__track" data-loop="testimonials">
+          <figure class="rc-quote m-0" data-item>
+            <span class="rc-quote__mark" aria-hidden="true"><i class="bi bi-quote"></i></span>
+            <blockquote class="m-0"><p data-field="quote">Racors equipment has been running in our facility around the clock with consistent performance. Quality is evident in every detail.</p></blockquote>
+            <figcaption class="rc-quote__author">
+              <!-- IF avatar: <img src="…" alt="" width="48" height="48" class="rounded-circle">  ELSE initials -->
+              <span class="rc-quote__avatar" aria-hidden="true" data-field="avatar_or_initials">MT</span>
+              <span><strong data-field="author_name">Michael Turner</strong><small data-field="author_role">Operations Manager</small></span>
+            </figcaption>
+          </figure>
+          <figure class="rc-quote m-0" data-item>
+            <span class="rc-quote__mark" aria-hidden="true"><i class="bi bi-quote"></i></span>
+            <blockquote class="m-0"><p data-field="quote">Fast delivery, solid build and a service team that actually picks up the phone. Our site stayed dry through the whole monsoon.</p></blockquote>
+            <figcaption class="rc-quote__author">
+              <!-- IF avatar: <img src="…" alt="" width="48" height="48" class="rounded-circle">  ELSE initials -->
+              <span class="rc-quote__avatar" aria-hidden="true" data-field="avatar_or_initials">AP</span>
+              <span><strong data-field="author_name">Arun Prakash</strong><small data-field="author_role">Project Engineer</small></span>
+            </figcaption>
+          </figure>
+          <figure class="rc-quote m-0" data-item>
+            <span class="rc-quote__mark" aria-hidden="true"><i class="bi bi-quote"></i></span>
+            <blockquote class="m-0"><p data-field="quote">We rented six trailer pumps for a foundation job and extended twice. Zero breakdowns, honest pricing.</p></blockquote>
+            <figcaption class="rc-quote__author">
+              <!-- IF avatar: <img src="…" alt="" width="48" height="48" class="rounded-circle">  ELSE initials -->
+              <span class="rc-quote__avatar" aria-hidden="true" data-field="avatar_or_initials">FA</span>
+              <span><strong data-field="author_name">Fatima Al Mansoori</strong><small data-field="author_role">Site Manager</small></span>
+            </figcaption>
+          </figure>
+          <figure class="rc-quote m-0" data-item>
+            <span class="rc-quote__mark" aria-hidden="true"><i class="bi bi-quote"></i></span>
+            <blockquote class="m-0"><p data-field="quote">From design to commissioning, the turnkey dewatering package was handled end to end. Highly recommended.</p></blockquote>
+            <figcaption class="rc-quote__author">
+              <!-- IF avatar: <img src="…" alt="" width="48" height="48" class="rounded-circle">  ELSE initials -->
+              <span class="rc-quote__avatar" aria-hidden="true" data-field="avatar_or_initials">DO</span>
+              <span><strong data-field="author_name">David Okafor</strong><small data-field="author_role">Construction Director</small></span>
+            </figcaption>
+          </figure>
+        </div>
+        <!-- END LOOP -->
+        <button class="rc-round-btn rc-round-btn--next" type="button" aria-label="Next testimonial" data-dir="1"><i class="bi bi-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+  <!-- ================= SECTION: FAQ + contact cards =================
+       DYNAMIC
+         LOOP faqs  -> accordion items  (table: faqs)  ids: faq-{id}-h / faq-{id}-c
+                       item with is_expanded = 1: remove .collapsed, aria-expanded="true", add .show
+         SETTINGS   -> sales_phone, whatsapp_number, contact_email
+  -->
+  <section class="rc-section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5 rc-reveal" id="contact">
+          <span class="rc-eyebrow">FAQ</span>
+          <h2 id="faq-title" class="rc-h2">Have questions?</h2>
+          <p class="rc-lead">Can't find what you need? Our sales and service team responds fast, by phone, WhatsApp or email.</p>
+
+          <!-- Component: contact-card (C12) -->
+          <a class="rc-contact" href="tel:+917540086755" data-field-href="settings.sales_phone">
+            <i class="bi bi-person"></i>
+            <span><small>Sales Enquiry</small><strong>+91 75400 86755</strong></span>
+          </a>
+          <a class="rc-contact" href="https://wa.me/917540086315" data-field-href="settings.whatsapp_number" target="_blank" rel="noopener">
+            <i class="bi bi-whatsapp"></i>
+            <span><small>WhatsApp</small><strong>+91 75400 86315</strong></span>
+          </a>
+          <a class="rc-contact" href="mailto:office@racors.in" data-field-href="settings.contact_email">
+            <i class="bi bi-envelope"></i>
+            <span><small>Email</small><strong>office@racors.in</strong></span>
+          </a>
+        </div>
+
+        <div class="col-lg-7 rc-reveal">
+          <!-- LOOP: faqs -->
+          <div class="accordion rc-accordion" id="faqAccordion" data-loop="faqs">
+            <div class="accordion-item" data-item>
+              <h3 class="accordion-header" id="faq-1-h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-1-c"
+                        aria-expanded="false" aria-controls="faq-1-c" data-field="question">Do you provide custom solutions?</button>
+              </h3>
+              <div id="faq-1-c" class="accordion-collapse collapse" aria-labelledby="faq-1-h" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" data-field="answer">Yes. Our engineers size pumps, hoses and power to your site&#x27;s head, flow and solids content, and can build custom skids or trailer sets.</div>
+              </div>
+            </div>
+            <div class="accordion-item" data-item>
+              <h3 class="accordion-header" id="faq-2-h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-2-c"
+                        aria-expanded="false" aria-controls="faq-2-c" data-field="question">Do you rent pumps for short-term projects?</button>
+              </h3>
+              <div id="faq-2-c" class="accordion-collapse collapse" aria-labelledby="faq-2-h" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" data-field="answer">We offer daily, weekly and monthly rentals, with delivery, installation and on-call support included.</div>
+              </div>
+            </div>
+            <div class="accordion-item" data-item>
+              <h3 class="accordion-header" id="faq-3-h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-3-c"
+                        aria-expanded="false" aria-controls="faq-3-c" data-field="question">Do you export outside India?</button>
+              </h3>
+              <div id="faq-3-c" class="accordion-collapse collapse" aria-labelledby="faq-3-h" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" data-field="answer">Racors is a Government of India recognised Star Export House and ships to the Middle East, Africa, Europe and Asia.</div>
+              </div>
+            </div>
+            <div class="accordion-item" data-item>
+              <h3 class="accordion-header" id="faq-4-h">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-4-c"
+                        aria-expanded="false" aria-controls="faq-4-c" data-field="question">What after-sales support do you offer?</button>
+              </h3>
+              <div id="faq-4-c" class="accordion-collapse collapse" aria-labelledby="faq-4-h" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" data-field="answer">24/7 after-sales support, genuine spares from stock and field service engineers for repairs and preventive maintenance.</div>
+              </div>
+            </div>
+            <div class="accordion-item" data-item>
+              <h3 class="accordion-header" id="faq-5-h">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq-5-c"
+                        aria-expanded="true" aria-controls="faq-5-c" data-field="question">How quickly can you deliver equipment?</button>
+              </h3>
+              <div id="faq-5-c" class="accordion-collapse collapse show" aria-labelledby="faq-5-h" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" data-field="answer">Ready-stock units can usually dispatch within 24–48 hours of order confirmation.</div>
+              </div>
+            </div>
+          </div>
+          <!-- END LOOP -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= SECTION: CTA band ================= -->
+  <section class="rc-cta" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-4">
+        <h2 id="cta-title" class="rc-cta__title">Ready to pull the trigger?<br><mark>Get a quote today.</mark></h2>
+        <div class="d-flex flex-wrap gap-3">
+          <button type="button" class="btn rc-btn rc-btn-primary" data-bs-toggle="modal" data-bs-target="#enquiryModal" data-enquiry-type="quote">
+            Get a Quotation <i class="bi bi-arrow-right"></i>
+          </button>
+          <a href="#services" class="btn rc-btn rc-btn-white-outline">Our Services <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= LAYOUT: Footer ================= -->
+<!-- DYNAMIC (SETTINGS): company_about, address, contact_email, phone, social_* URLs -->
+<footer class="rc-footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <img src="assets/images/logo.png" alt="Racors" width="242" height="87" class="rc-footer__logo">
+        <p>Racors proudly stands as a leading Indian manufacturer, exporter, and importer of specialized dewatering pumps and high-performance fluid management equipment, serving industries across the globe.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3 class="rc-footer__head">Services</h3>
+        <ul class="rc-footer__links">
+          <li><a href="products.html">Product Ranges</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="services.html">Pump Sales</a></li>
+          <li><a href="services.html">Pump Hire</a></li>
+          <li><a href="services.html">Project Works</a></li>
+          <li><a href="services.html">Repair &amp; Services</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3 class="rc-footer__head">Quick Links</h3>
+        <ul class="rc-footer__links">
+          <li><a href="about.html">About us</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="/instock">Ready Stock</a></li>
+          <li><a href="/careers">Career</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h3 class="rc-footer__head">Contact Us</h3>
+        <address class="rc-footer__address" data-field="settings.address">
+          8/27 Rasi Garden, Coimbatore – 641109,<br>Tamil Nadu, India<br>
+          <a href="mailto:info@racors.in">info@racors.in</a><br>
+          <a href="tel:+917200076755">+91 72000 76755</a>
+        </address>
+        <div class="rc-social">
+          <a href="#" aria-label="Facebook" rel="noopener" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="YouTube" rel="noopener" target="_blank"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn" rel="noopener" target="_blank"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="Instagram" rel="noopener" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="X" rel="noopener" target="_blank"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rc-footer__bottom">
+      <p class="mb-0">© <span data-current-year>2026</span> Racors. All Rights Reserved <span class="mx-1">|</span> <i class="bi bi-clock"></i> 24/7 After Sales Support</p>
+      <p class="mb-0"><a href="/terms">Terms &amp; conditions</a> <span class="mx-1">|</span> <a href="/privacy">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+<!-- ================= COMPONENT: Enquiry / Quote modal =================
+     Opened by any element with  data-bs-toggle="modal" data-bs-target="#enquiryModal"
+       data-enquiry-type="general|quote|brochure"   sets the hidden `type` field + modal title
+       data-product-id="{id}"                       pre-selects the product
+     SUBMIT: normal HTML form POST to /enquiry (no AJAX). Field `name`s = database columns.
+     BACKEND after POST:
+       success -> redirect back with flash message; print it in [data-flash="success"] (remove .d-none)
+       errors  -> re-render page: old() values in inputs, add .is-invalid to the field,
+                  put the message in its .invalid-feedback, show [data-flash="error"].
+       The modal re-opens automatically on load when it contains a visible flash or .is-invalid.
+-->
+<div class="modal fade rc-modal" id="enquiryModal" data-lenis-prevent tabindex="-1" aria-labelledby="enquiryModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="enquiryModalTitle" data-title-general="Send an Enquiry" data-title-quote="Request a Quotation" data-title-brochure="Request a Brochure">Send an Enquiry</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="rc-form" id="enquiryForm" action="/enquiry" method="post" novalidate data-component="enquiry-form">
+          <!-- BACKEND: CSRF token (Laravel: @csrf) -->
+          <input type="hidden" name="_token" value="">
+          <!-- FLASH messages (server-rendered; remove .d-none to show) -->
+          <div class="alert alert-success rc-form__status d-none" role="status" data-flash="success">Thank you. Our team will contact you within one business day.</div>
+          <div class="alert alert-danger rc-form__status d-none" role="alert" data-flash="error">Please correct the highlighted fields.</div>
+
+          <input type="hidden" name="type" value="general">
+          <input type="hidden" name="source_page" value="">
+          <!-- Honeypot: real users never fill this. Reject on the server if not empty. -->
+          <div class="rc-hp" aria-hidden="true">
+            <label for="enq-website">Website</label>
+            <input type="text" id="enq-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="enq-name" class="form-label">Full name <span class="rc-req">*</span></label>
+              <input type="text" class="form-control" id="enq-name" name="name" required minlength="2" maxlength="120" autocomplete="name">
+              <div class="invalid-feedback" data-error-for="name">Please enter your name.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-company" class="form-label">Company</label>
+              <input type="text" class="form-control" id="enq-company" name="company" maxlength="160" autocomplete="organization">
+              <div class="invalid-feedback" data-error-for="company"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-phone" class="form-label">Phone / WhatsApp <span class="rc-req">*</span></label>
+              <input type="tel" class="form-control" id="enq-phone" name="phone" required pattern="^\+?[0-9\s\-]{7,20}$" autocomplete="tel" placeholder="+91 …">
+              <div class="invalid-feedback" data-error-for="phone">Please enter a valid phone number.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-email" class="form-label">Email <span class="rc-req">*</span></label>
+              <input type="email" class="form-control" id="enq-email" name="email" required maxlength="160" autocomplete="email">
+              <div class="invalid-feedback" data-error-for="email">Please enter a valid email.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-product" class="form-label">Product of interest</label>
+              <select class="form-select" id="enq-product" name="product_id">
+                <option value="">Not sure / General</option>
+                <!-- LOOP: products (all active) -> <option value="{id}">{title}</option> -->
+                <option value="1">Dewatering Pumps</option>
+                <option value="2">Submersible Pumps</option>
+                <option value="3">Trailer Dewatering Pumps</option>
+                <option value="4">Wellpoint Dewatering Pumps</option>
+                <!-- END LOOP -->
+              </select>
+              <div class="invalid-feedback" data-error-for="product_id"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="enq-service" class="form-label">Requirement</label>
+              <select class="form-select" id="enq-service" name="requirement">
+                <option value="purchase">Purchase</option>
+                <option value="rental">Rental</option>
+                <option value="project">Project / turnkey</option>
+                <option value="repair">Repair &amp; maintenance</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="enq-message" class="form-label">Message <span class="rc-req">*</span></label>
+              <textarea class="form-control" id="enq-message" name="message" rows="4" required minlength="10" maxlength="2000" placeholder="Site location, flow / head required, duration…"></textarea>
+              <div class="invalid-feedback" data-error-for="message">Please tell us a little about your requirement (min. 10 characters).</div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="enq-consent" name="consent" value="1" required>
+                <label class="form-check-label" for="enq-consent">I agree to be contacted about this enquiry and accept the <a href="/privacy" target="_blank">Privacy Policy</a>.</label>
+                <div class="invalid-feedback" data-error-for="consent">Please accept to continue.</div>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="d-flex justify-content-end gap-2 mt-4">
+            <button type="button" class="btn rc-btn rc-btn-outline" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn rc-btn rc-btn-primary">
+              <span class="spinner-border spinner-border-sm d-none" aria-hidden="true" data-slot="spinner"></span>
+              <span data-slot="label">Submit Enquiry</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ================= COMPONENT: Floating contact (speed-dial) =================
+     Click the round button -> WhatsApp + Call buttons rise up; the chat icon swipes into a close (X).
+     Click again, press Esc or click anywhere else to close. Labels' letters roll on hover (morph swipe).
+     DYNAMIC (SETTINGS): whatsapp_number (+ optional prefilled text), sales_phone
+-->
+<div class="rc-fab" data-component="fab">
+  <ul class="rc-fab__menu" id="rcFabMenu" aria-label="Contact options">
+    <li>
+      <a class="rc-fab__item rc-fab__item--wa" href="https://wa.me/917540086315?text=Hi%20Racors%2C%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener" data-field-href="settings.whatsapp_link">
+        <span class="rc-fab__label">WhatsApp</span>
+        <span class="rc-fab__icon" aria-hidden="true"><i class="bi bi-whatsapp"></i></span>
+      </a>
+    </li>
+    <li>
+      <a class="rc-fab__item rc-fab__item--call" href="tel:+917540086755" data-field-href="settings.sales_phone">
+        <span class="rc-fab__label">Call us</span>
+        <span class="rc-fab__icon" aria-hidden="true"><i class="bi bi-telephone"></i></span>
+      </a>
+    </li>
+  </ul>
+  <button type="button" class="rc-fab__toggle" aria-expanded="false" aria-controls="rcFabMenu" aria-label="Contact us" data-label-open="Contact us" data-label-close="Close contact options">
+    <span class="rc-fab__swap" aria-hidden="true">
+      <i class="bi bi-chat-dots-fill"></i>
+      <i class="bi bi-x-lg"></i>
+    </span>
+  </button>
+</div>
+<!-- Vendor JS (Bootstrap bundle includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+<!-- Hero slider -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@14.4.0/swiper-bundle.min.js" defer></script>
+<!-- Smooth (inertia) scrolling -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" defer></script>
+<!-- App JS -->
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
