@@ -1,0 +1,13 @@
+<!-- Industry tab panel. DYNAMIC: slug, image, title, description, applications, url. -->
+<div class="tab-pane fade rc-industry" id="industry-{{slug}}" role="tabpanel" aria-labelledby="tab-{{slug}}" tabindex="0" data-item>
+  <div class="rc-industry__media">
+    <img src="{{image}}" alt="{{image_alt}}" width="777" height="603" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+  </div>
+  <div>
+    <h3 class="rc-industry__title" data-field="title">{{title}}</h3>
+    <p data-field="description">{{description}}</p>
+    <p class="rc-industry__label">Key Applications</p>
+    <ul class="rc-check" data-loop="applications"><li data-item>{{application}}</li></ul>
+    <a href="{{url}}" class="btn rc-btn rc-btn-outline" data-field-href="url">Read More <i class="bi bi-arrow-right"></i></a>
+  </div>
+</div>

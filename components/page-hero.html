@@ -1,0 +1,15 @@
+<!--
+  Shared inner-page banner.
+  DYNAMIC: banner_image, banner_image_alt, banner_title, banner_lead.
+  Optional modifier: rc-page-hero--bottom or rc-page-hero--center.
+  The image overlay is styled independently with --rc-page-hero-overlay in assets/css/style.css.
+-->
+<section class="rc-page-hero {{banner_modifier}}" aria-labelledby="page-title">
+  <img class="rc-page-hero__img" src="{{banner_image}}" alt="{{banner_image_alt}}" width="1600" height="900" fetchpriority="high">
+  <div class="container">
+    <div class="rc-page-hero__content">
+      <h1 id="page-title" class="rc-page-hero__title">{{banner_title}}</h1>
+      <p class="rc-page-hero__lead">{{banner_lead}}</p>
+    </div>
+  </div>
+</section>

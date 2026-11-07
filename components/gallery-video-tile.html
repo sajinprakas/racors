@@ -1,0 +1,6 @@
+<!-- Video tile for the gallery lightbox. DYNAMIC: video_url, thumbnail, caption. -->
+<a class="rc-gtile rc-gtile--video" href="{{video_url}}" data-lightbox="gallery" data-type="video" data-poster="{{thumbnail}}" data-caption="{{caption}}" data-field-href="video_url" data-field-data-caption="caption">
+  <img src="{{thumbnail}}" alt="{{caption}}" width="1000" height="1000" loading="lazy" data-field-src="thumbnail" data-field-alt="caption">
+  <span class="rc-gtile__play" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
+  <span class="visually-hidden">Play video: {{caption}}</span>
+</a>

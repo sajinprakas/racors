@@ -1,0 +1,9 @@
+<!-- FAQ accordion item. DYNAMIC: id, question, answer_html. Keep heading/content IDs paired. -->
+<div class="accordion-item" data-item>
+  <h3 class="accordion-header" id="faq-{{id}}-h">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-{{id}}-c" aria-expanded="false" aria-controls="faq-{{id}}-c" data-field="question">{{question}}</button>
+  </h3>
+  <div id="faq-{{id}}-c" class="accordion-collapse collapse" aria-labelledby="faq-{{id}}-h" data-bs-parent="#faqAccordion">
+    <div class="accordion-body" data-field="answer_html">{{answer_html}}</div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<!-- Product/category card used on home, product listing, and related-products sections. -->
+<article class="rc-product" data-item>
+  <a class="rc-product__media" href="{{product_url}}" data-field-href="url">
+    <img src="{{image}}" alt="{{image_alt}}" width="373" height="252" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+  </a>
+  <div class="rc-product__body">
+    <span class="rc-product__meta rc-chip rc-chip--blue" data-field="meta_label">{{meta_label}}</span>
+    <h3 class="rc-product__title"><a href="{{product_url}}" data-field="title" data-field-href="url">{{title}}</a></h3>
+    <p class="rc-product__desc" data-field="short_description">{{short_description}}</p>
+    <!-- Optional LOOP: tags -->
+    <div class="rc-product__tags" data-loop="tags"><span class="rc-chip" data-item>{{tag}}</span></div>
+    <div class="rc-product__actions">
+      <a class="btn rc-btn rc-btn-dark rc-btn-sm" href="contact.html">Get a Quote</a>
+      <!-- Render only when brochure_pdf is available. -->
+      <a class="btn rc-btn rc-btn-ghost-sm" href="{{brochure_pdf}}" download data-field-href="brochure_pdf">Brochure <i class="bi bi-download"></i></a>
+    </div>
+  </div>
+</article>

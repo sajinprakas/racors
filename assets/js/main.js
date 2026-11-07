@@ -97,10 +97,6 @@
     var slides = el.querySelectorAll(".swiper-slide");
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var multi = slides.length > 1;
-    var pad = function (n) { return (n < 10 ? "0" : "") + n; };
-    var current = el.querySelector(".rc-hero-counter__current");
-    var total = el.querySelector(".rc-hero-counter__total");
-    if (total) total.textContent = pad(slides.length);
 
     if (!multi) { el.classList.add("is-single"); return; }
 
@@ -111,7 +107,6 @@
       grabCursor: true,
       keyboard: { enabled: true, onlyInViewport: true },
       autoplay: reduce ? false : { delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true },
-      navigation: { prevEl: el.querySelector(".rc-hero-nav--prev"), nextEl: el.querySelector(".rc-hero-nav--next") },
       pagination: {
         el: el.querySelector(".rc-hero-pagination"),
         clickable: true,
@@ -121,15 +116,12 @@
       },
       a11y: { enabled: true, prevSlideMessage: "Previous slide", nextSlideMessage: "Next slide", paginationBulletMessage: "Go to slide {{index}}" },
       on: {
-        slideChange: function (s) { if (current) current.textContent = pad(s.realIndex + 1); },
         autoplayTimeLeft: function (s, time, progress) {
           var dot = el.querySelector(".rc-hero-dot.is-active");
           if (dot) dot.style.setProperty("--rc-progress", String(1 - progress));
         }
       }
     });
-    R.hero = swiper;
-
     // Start the timer after the page loader has gone, so slide 1 gets its full time
     if (swiper.autoplay && document.documentElement.classList.contains("is-loading")) {
       swiper.autoplay.stop();
@@ -790,7 +782,6 @@
       open(a);
     });
   };
-  R.openLightbox = open;
 })();
 
 /* "Load more": fetch the next page (normal server-rendered HTML, no API), append its tiles,
@@ -964,65 +955,6 @@
   };
 })();
 
-/* Enquiry / quote modal
-   - The button that opens the modal sets the form type, title and pre-selected product
-   - Browser validation (Bootstrap styles) before a NORMAL form POST to the server
-   - Re-opens the modal on page load when the server rendered a flash message or field errors */
-(function () {
-  "use strict";
-  (window.Racors = window.Racors || {}).enquiryForm = function () {
-    var modalEl = document.getElementById("enquiryModal");
-    var form = document.getElementById("enquiryForm");
-    if (!modalEl || !form || !window.bootstrap) return;
-
-    var title = document.getElementById("enquiryModalTitle");
-    var submitBtn = form.querySelector('button[type="submit"]');
-    var spinner = form.querySelector('[data-slot="spinner"]');
-    var serverState = form.querySelector('[data-flash]:not(.d-none), .is-invalid');
-
-    modalEl.addEventListener("show.bs.modal", function (e) {
-      var trigger = e.relatedTarget;
-      if (!trigger) return; // opened by script (server errors) – keep the server-rendered state
-      var type = trigger.getAttribute("data-enquiry-type") || "general";
-      form.classList.remove("was-validated");
-      form.querySelectorAll("[data-flash]").forEach(function (f) { f.classList.add("d-none"); });
-      form.querySelectorAll(".is-invalid").forEach(function (f) { f.classList.remove("is-invalid"); });
-      form.elements.type.value = type;
-      form.elements.source_page.value = window.location.pathname + window.location.hash;
-      var key = "title" + type.charAt(0).toUpperCase() + type.slice(1);
-      if (title.dataset[key]) title.textContent = title.dataset[key];
-      form.elements.product_id.value = trigger.getAttribute("data-product-id") || "";
-    });
-    modalEl.addEventListener("shown.bs.modal", function () { form.elements.name.focus(); });
-
-    // Clear a server error as soon as the user edits that field
-    form.addEventListener("input", function (e) { e.target.classList.remove("is-invalid"); });
-
-    form.addEventListener("submit", function (e) {
-      if (!form.checkValidity()) {
-        e.preventDefault();
-        form.classList.add("was-validated");
-        var first = form.querySelector(":invalid");
-        if (first) first.focus();
-        return;
-      }
-      // valid -> let the browser submit; show busy state and block double submits
-      submitBtn.disabled = true;
-      submitBtn.setAttribute("aria-busy", "true");
-      if (spinner) spinner.classList.remove("d-none");
-    });
-
-    // Restore the button if the user comes back with the browser Back button
-    window.addEventListener("pageshow", function () {
-      submitBtn.disabled = false;
-      submitBtn.removeAttribute("aria-busy");
-      if (spinner) spinner.classList.add("d-none");
-    });
-
-    if (serverState) bootstrap.Modal.getOrCreateInstance(modalEl).show();
-  };
-})();
-
 /* ==========================================================
    RACORS — app bootstrap
    Each component registers an init function on window.Racors.
@@ -1038,7 +970,7 @@
       el.textContent = new Date().getFullYear();
     });
 
-    ["smoothScroll", "heroSlider", "navMorph", "tabsMorph", "socialMorph", "fab", "header", "reveal", "industryTabs", "regionFilter", "testimonialSlider", "enquiryForm", "productGallery", "productFilters", "formValidate", "scrollSpy", "countUp", "milestones", "lightbox", "loadMore"].forEach(function (name) {
+    ["smoothScroll", "heroSlider", "navMorph", "tabsMorph", "socialMorph", "fab", "header", "reveal", "industryTabs", "regionFilter", "testimonialSlider", "productGallery", "productFilters", "formValidate", "scrollSpy", "countUp", "milestones", "lightbox", "loadMore"].forEach(function (name) {
       if (typeof R[name] !== "function") return;
       try { R[name](); } catch (err) { console.error("[racors] " + name + " failed", err); }
     });

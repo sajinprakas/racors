@@ -1,0 +1,13 @@
+<!-- Industry detail row. DYNAMIC: slug, image, title, summary, applications, url. -->
+<article class="row g-4 g-lg-5 align-items-center rc-ind-row rc-reveal" id="industry-{{slug}}" data-item>
+  <div class="col-lg-5 rc-ind-row__media">
+    <img src="{{image}}" alt="{{image_alt}}" width="1149" height="1224" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+  </div>
+  <div class="col-lg-6 rc-ind-row__body">
+    <h2 class="rc-ind-row__title" data-field="title">{{title}}</h2>
+    <p data-field="summary">{{summary}}</p>
+    <p class="rc-industry__label">Key Applications</p>
+    <ul class="rc-check" data-loop="applications"><li data-item>{{application}}</li></ul>
+    <a class="btn rc-btn rc-btn-outline" href="{{url}}" data-field-href="url">Explore industry <i class="bi bi-arrow-right"></i></a>
+  </div>
+</article>

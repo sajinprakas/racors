@@ -1,0 +1,9 @@
+<!-- Shared legal-page banner. DYNAMIC: legal_title, optional last_updated. -->
+<section class="rc-legal-hero" aria-labelledby="legal-title">
+  <div class="container">
+    <div class="rc-legal-hero__content">
+      <h1 id="legal-title" class="rc-legal-hero__title">{{legal_title}}</h1>
+      {{#if last_updated}}<p class="rc-legal-hero__meta">Last updated: {{last_updated}}</p>{{/if}}
+    </div>
+  </div>
+</section>

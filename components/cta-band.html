@@ -1,0 +1,16 @@
+<!-- Shared quote CTA band. DYNAMIC: cta_title, cta_emphasis, cta_primary_label, cta_primary_url, cta_secondary_label, cta_secondary_url. -->
+<section class="rc-cta" aria-labelledby="cta-title">
+  <div class="container">
+    <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-4">
+      <h2 id="cta-title" class="rc-cta__title">{{cta_title}}<br><mark>{{cta_emphasis}}</mark></h2>
+      <div class="d-flex flex-wrap gap-3">
+        <a class="btn rc-btn rc-btn-primary" href="{{cta_primary_url}}">
+          {{cta_primary_label}} <i class="bi bi-arrow-right"></i>
+        </a>
+        <a class="btn rc-btn rc-btn-white-outline" href="{{cta_secondary_url}}">
+          {{cta_secondary_label}} <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

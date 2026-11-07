@@ -1,0 +1,23 @@
+<!-- Stock listing card. DYNAMIC: stock, model, title, KPIs, specs, image, product_url, WhatsApp URL. -->
+<article class="rc-stock" data-item>
+  <a class="rc-stock__media" href="{{product_url}}" data-field-href="url">
+    <span class="rc-stock__badge"><i aria-hidden="true"></i><span data-field="stock_label">{{stock_label}}</span></span>
+    <img src="{{image}}" alt="{{image_alt}}" width="373" height="252" loading="lazy" data-field-src="image" data-field-alt="image_alt">
+  </a>
+  <div class="rc-stock__body">
+    <span class="rc-stock__model" data-field="model">{{model}}</span>
+    <h3 class="rc-stock__title"><a href="{{product_url}}" data-field="title" data-field-href="url">{{title}}</a></h3>
+    <div class="rc-stock__kpis" data-loop="kpis">
+      <div data-item><small data-field="label">Max. flow</small><strong data-field="value">200 <span data-field="unit">m³/h</span></strong></div>
+      <div data-item><small data-field="label">Max. head</small><strong data-field="value">40 <span data-field="unit">m</span></strong></div>
+    </div>
+    <dl class="rc-stock__specs" data-loop="specs">
+      <div data-item><dt data-field="label">Suction × discharge</dt><dd data-field="value">4″ × 4″ (100 mm)</dd></div>
+    </dl>
+    <div class="rc-stock__actions">
+      <a class="btn rc-btn rc-btn-dark" href="contact.html">Get a quote</a>
+      <a class="rc-stock__wa" href="{{whatsapp_url}}" data-field-href="whatsapp_url" target="_blank" rel="noopener" aria-label="Enquire on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+    </div>
+    <a class="rc-stock__more" href="{{product_url}}" data-field-href="url">Full specs &amp; curves <i class="bi bi-arrow-right"></i></a>
+  </div>
+</article>

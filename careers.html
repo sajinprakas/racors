@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Careers | Racors</title>
+  <link rel="icon" href="assets/images/favicon.png">
+  <!-- Mark JS as available before first paint (enables loader + animations without a flash) -->
+  <script>document.documentElement.classList.replace("no-js", "js"); document.documentElement.classList.add("is-loading");</script>
+
+  <!-- Fonts + vendor CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- App CSS -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body data-page="careers">
+
+<!-- ================= COMPONENT: Page loader =================
+     Shown until the page (images, fonts) has loaded, then slides away.
+     Hidden automatically without JavaScript. -->
+<div class="rc-preloader" id="rcPreloader" role="status" aria-live="polite">
+  <div class="rc-preloader__inner">
+    <img src="assets/images/logo-white.png" alt="" width="186" height="59" class="rc-preloader__logo">
+    <div class="rc-preloader__bar" aria-hidden="true"><span id="rcPreloaderBar"></span></div>
+    <span class="visually-hidden">Loading…</span>
+  </div>
+</div>
+
+<!-- ================= LAYOUT: Header / main navigation ================= -->
+<a class="visually-hidden-focusable rc-skip" href="#main">Skip to content</a>
+
+<header class="rc-header" id="top" data-component="header">
+  <nav class="navbar navbar-expand-xl" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand rc-brand" href="index.html">
+        <img src="assets/images/logo-white.png" alt="Racors" width="186" height="59">
+      </a>
+
+      <button class="navbar-toggler rc-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#rcMenu" aria-controls="rcMenu" aria-label="Open menu">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="offcanvas offcanvas-end rc-offcanvas" tabindex="-1" id="rcMenu" data-lenis-prevent aria-labelledby="rcMenuLabel">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h6 mb-0" id="rcMenuLabel">Menu</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body align-items-xl-center">
+          <!-- BACKEND: menu items can come from a CMS menu; mark the current page with .active + aria-current="page" -->
+          <ul class="navbar-nav ms-xl-auto rc-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="products.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+              <ul class="dropdown-menu rc-dropdown">
+                <li><a class="dropdown-item" href="products.html">Dewatering Pumps</a></li>
+                <li><a class="dropdown-item" href="products.html">Submersible Pumps</a></li>
+                <li><a class="dropdown-item" href="products.html">Spares</a></li>
+                <li><a class="dropdown-item" href="products.html">Fittings &amp; Hoses</a></li>
+                <li><a class="dropdown-item" href="products.html">Gensets &amp; Towerlights</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="industries.html">Industries</a></li>
+            <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="instock.html">Instock</a></li>
+            <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle rc-lang" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="rc-flag" aria-hidden="true">🇺🇸</span> Eng
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end rc-dropdown">
+                <li><a class="dropdown-item" href="?lang=en">English</a></li>
+                <li><a class="dropdown-item" href="?lang=ar">العربية</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a class="btn rc-btn rc-btn-white ms-xl-3 mt-3 mt-xl-0" href="contact.html">Send Enquiry</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="rc-page-hero rc-page-hero--bottom" aria-labelledby="page-title">
+    <img class="rc-page-hero__img" src="assets/images/hero-1.jpg" alt="" width="1600" height="900" fetchpriority="high" data-field-src="banner_image">
+    <div class="container">
+      <div class="rc-page-hero__content">
+        <h1 id="page-title" class="rc-page-hero__title" data-field="banner_title">Let Our Team<br>Be Your New Team</h1>
+        <p class="rc-page-hero__lead" data-field="banner_lead">We always strive to make a positive difference in everything. If that’s important to you; Racors would be a good fit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION: Open positions =================
+       DYNAMIC: LOOP departments (title) -> LOOP jobs (title, experience).
+       "Apply Now" opens the Application Form modal and passes the job title in data-job. -->
+  <section class="rc-section rc-careers" aria-labelledby="positions-title">
+    <div class="container">
+      <header class="rc-careers__head">
+        <h2 id="positions-title">Open Positions</h2>
+        <p>Become part of a high-performing &amp; collaborative team</p>
+      </header>
+      <div class="accordion rc-careers__acc" id="openPositions" data-loop="departments">
+        <div class="accordion-item" data-item>
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dept-1" aria-expanded="false" aria-controls="dept-1">The Heart of Our Success</button>
+          </h3>
+          <div id="dept-1" class="accordion-collapse collapse" data-bs-parent="#openPositions">
+            <ul class="accordion-body rc-jobs" data-loop="department.jobs">
+              <li class="rc-job" data-item>
+                <span class="rc-job__title" data-field="title">Finance Executive</span>
+                <span class="rc-job__exp" data-field="experience">0 - 1 Years of experience</span>
+                <button type="button" class="rc-job__apply" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Finance Executive">Apply Now <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              </li>
+              <li class="rc-job" data-item>
+                <span class="rc-job__title" data-field="title">Finance Executive</span>
+                <span class="rc-job__exp" data-field="experience">0 - 1 Years of experience</span>
+                <button type="button" class="rc-job__apply" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Finance Executive">Apply Now <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              </li>
+              <li class="rc-job" data-item>
+                <span class="rc-job__title" data-field="title">Finance Executive</span>
+                <span class="rc-job__exp" data-field="experience">0 - 1 Years of experience</span>
+                <button type="button" class="rc-job__apply" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Finance Executive">Apply Now <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion-item" data-item>
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dept-2" aria-expanded="false" aria-controls="dept-2">The Heart of Our Success</button>
+          </h3>
+          <div id="dept-2" class="accordion-collapse collapse" data-bs-parent="#openPositions">
+            <ul class="accordion-body rc-jobs" data-loop="department.jobs">
+              <li class="rc-job" data-item>
+                <span class="rc-job__title" data-field="title">Finance Executive</span>
+                <span class="rc-job__exp" data-field="experience">0 - 1 Years of experience</span>
+                <button type="button" class="rc-job__apply" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Finance Executive">Apply Now <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              </li>
+              <li class="rc-job" data-item>
+                <span class="rc-job__title" data-field="title">Finance Executive</span>
+                <span class="rc-job__exp" data-field="experience">0 - 1 Years of experience</span>
+                <button type="button" class="rc-job__apply" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Finance Executive">Apply Now <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              </li>
+              <li class="rc-job" data-item>
+                <span class="rc-job__title" data-field="title">Finance Executive</span>
+                <span class="rc-job__exp" data-field="experience">0 - 1 Years of experience</span>
+                <button type="button" class="rc-job__apply" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Finance Executive">Apply Now <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion-item" data-item>
+          <h3 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#dept-3" aria-expanded="true" aria-controls="dept-3">The Heart of Our Success</button>
+          </h3>
+          <div id="dept-3" class="accordion-collapse collapse show" data-bs-parent="#openPositions">
+            <ul class="accordion-body rc-jobs" data-loop="department.jobs">
+              <li class="rc-job" data-item>
+                <span class="rc-job__title" data-field="title">Finance Executive</span>
+                <span class="rc-job__exp" data-field="experience">0 - 1 Years of experience</span>
+                <button type="button" class="rc-job__apply" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Finance Executive">Apply Now <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              </li>
+              <li class="rc-job" data-item>
+                <span class="rc-job__title" data-field="title">Finance Executive</span>
+                <span class="rc-job__exp" data-field="experience">0 - 1 Years of experience</span>
+                <button type="button" class="rc-job__apply" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Finance Executive">Apply Now <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              </li>
+              <li class="rc-job" data-item>
+                <span class="rc-job__title" data-field="title">Finance Executive</span>
+                <span class="rc-job__exp" data-field="experience">0 - 1 Years of experience</span>
+                <button type="button" class="rc-job__apply" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Finance Executive">Apply Now <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION: CTA band ================= -->
+  <section class="rc-cta" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-4">
+        <h2 id="cta-title" class="rc-cta__title">Ready to pull the trigger?<br><mark>Get a quote today.</mark></h2>
+        <div class="d-flex flex-wrap gap-3">
+          <a class="btn rc-btn rc-btn-primary" href="contact.html">
+            Get a Quotation <i class="bi bi-arrow-right"></i>
+          </a>
+          <a href="services.html" class="btn rc-btn rc-btn-white-outline">Our Services <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= COMPONENT: Job application modal =================
+     Opened by any [data-bs-target="#applyModal"][data-job="Job title"]; the title is copied into the hidden `job` field.
+     SUBMIT: normal multipart POST to /careers/apply. Field `name`s = database columns. CV: PDF/DOC/DOCX, max 10 MB.
+     BACKEND: same flash / .is-invalid pattern as the other forms. -->
+<div class="modal fade rc-modal rc-modal--apply" id="applyModal" data-lenis-prevent tabindex="-1" aria-labelledby="applyModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="applyModalTitle">Application Form</h2>
+          <p class="rc-modal__sub d-none" data-slot="job-title"></p>
+        </div>
+        <button type="button" class="btn-close rc-modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="rc-form" id="applyForm" action="/careers/apply" method="post" enctype="multipart/form-data" novalidate data-validate>
+          <input type="hidden" name="_token" value="">
+          <input type="hidden" name="job" value="">
+          <div class="alert alert-success rc-form__status d-none" role="status" data-flash="success">Thank you. Our HR team will review your application.</div>
+          <div class="alert alert-danger rc-form__status d-none" role="alert" data-flash="error">Please correct the highlighted fields.</div>
+          <div class="rc-hp" aria-hidden="true"><label for="ap-website">Website</label><input type="text" id="ap-website" name="website" tabindex="-1" autocomplete="off"></div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="ap-name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="ap-name" name="name" placeholder="Enter your name" required minlength="2" maxlength="120" autocomplete="name">
+              <div class="invalid-feedback" data-error-for="name">Please enter your name.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="ap-phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="ap-phone" name="phone" placeholder="Enter your Number" required pattern="^\+?[0-9\s\-]{7,20}$" autocomplete="tel">
+              <div class="invalid-feedback" data-error-for="phone">Please enter a valid phone number.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="ap-email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="ap-email" name="email" placeholder="Enter your email" required maxlength="160" autocomplete="email">
+              <div class="invalid-feedback" data-error-for="email">Please enter a valid email.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="ap-country" class="form-label">Country</label>
+              <input type="text" class="form-control" id="ap-country" name="country" placeholder="Enter your country" required maxlength="80" autocomplete="country-name">
+              <div class="invalid-feedback" data-error-for="country">Please enter your country.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="ap-state" class="form-label">State</label>
+              <input type="text" class="form-control" id="ap-state" name="state" placeholder="Enter your state" maxlength="80" autocomplete="address-level1">
+              <div class="invalid-feedback" data-error-for="state"></div>
+            </div>
+            <div class="col-12">
+              <label for="ap-exp" class="form-label">Year Of Experience</label>
+              <select class="form-select" id="ap-exp" name="experience" required>
+                <option value="" selected disabled>Select</option>
+                <option value="0-1">0 – 1 years</option>
+                <option value="1-3">1 – 3 years</option>
+                <option value="3-5">3 – 5 years</option>
+                <option value="5-10">5 – 10 years</option>
+                <option value="10+">10+ years</option>
+              </select>
+              <div class="invalid-feedback" data-error-for="experience">Please select your experience.</div>
+            </div>
+            <div class="col-12">
+              <span class="form-label d-block" id="ap-cv-label">Upload CV</span>
+              <label class="rc-drop" for="ap-cv" data-filedrop data-max-mb="10">
+                <input type="file" class="rc-drop__input" id="ap-cv" name="cv" accept=".pdf,.doc,.docx" required aria-labelledby="ap-cv-label">
+                <i class="bi bi-cloud-upload rc-drop__icon" aria-hidden="true"></i>
+                <strong class="rc-drop__title" data-slot="drop-title">Upload Your CV</strong>
+                <small class="rc-drop__hint" data-slot="drop-hint">Maximum file size 10 MB</small>
+              </label>
+              <div class="invalid-feedback" data-error-for="cv">Please upload your CV (PDF or Word, max 10 MB).</div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end mt-4">
+            <button type="submit" class="btn rc-btn rc-btn-primary">
+              <span class="spinner-border spinner-border-sm d-none" aria-hidden="true" data-slot="spinner"></span>
+              <span data-slot="label">Submit</span> <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= LAYOUT: Footer ================= -->
+<!-- DYNAMIC (SETTINGS): company_about, address, contact_email, phone, social_* URLs -->
+<footer class="rc-footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <img src="assets/images/logo.png" alt="Racors" width="242" height="87" class="rc-footer__logo">
+        <p>Racors proudly stands as a leading Indian manufacturer, exporter, and importer of specialized dewatering pumps and high-performance fluid management equipment, serving industries across the globe.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3 class="rc-footer__head">Services</h3>
+        <ul class="rc-footer__links">
+          <li><a href="products.html">Product Ranges</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="services.html">Pump Sales</a></li>
+          <li><a href="services.html">Pump Hire</a></li>
+          <li><a href="services.html">Project Works</a></li>
+          <li><a href="services.html">Repair &amp; Services</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3 class="rc-footer__head">Quick Links</h3>
+        <ul class="rc-footer__links">
+          <li><a href="about.html">About us</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="instock.html">Ready Stock</a></li>
+          <li><a href="careers.html">Career</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h3 class="rc-footer__head">Contact Us</h3>
+        <address class="rc-footer__address" data-field="settings.address">
+          8/27 Rasi Garden, Coimbatore – 641109,<br>Tamil Nadu, India<br>
+          <a href="mailto:info@racors.in">info@racors.in</a><br>
+          <a href="tel:+917200076755">+91 72000 76755</a>
+        </address>
+        <div class="rc-social">
+          <a href="#" aria-label="Facebook" rel="noopener" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="YouTube" rel="noopener" target="_blank"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn" rel="noopener" target="_blank"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="Instagram" rel="noopener" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="X" rel="noopener" target="_blank"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rc-footer__bottom">
+      <p class="mb-0">© <span data-current-year>2026</span> Racors. All Rights Reserved <span class="mx-1">|</span> <i class="bi bi-clock"></i> 24/7 After Sales Support</p>
+      <p class="mb-0"><a href="terms.html">Terms &amp; conditions</a> <span class="mx-1">|</span> <a href="privacy.html">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= COMPONENT: Floating contact (speed-dial) =================
+     Click the round button -> WhatsApp + Call buttons rise up; the chat icon swipes into a close (X).
+     Click again, press Esc or click anywhere else to close. Labels' letters roll on hover (morph swipe).
+     DYNAMIC (SETTINGS): whatsapp_number (+ optional prefilled text), sales_phone
+-->
+<div class="rc-fab" data-component="fab">
+  <ul class="rc-fab__menu" id="rcFabMenu" aria-label="Contact options">
+    <li>
+      <a class="rc-fab__item rc-fab__item--wa" href="https://wa.me/917540086315?text=Hi%20Racors%2C%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener" data-field-href="settings.whatsapp_link">
+        <span class="rc-fab__label">WhatsApp</span>
+        <span class="rc-fab__icon" aria-hidden="true"><i class="bi bi-whatsapp"></i></span>
+      </a>
+    </li>
+    <li>
+      <a class="rc-fab__item rc-fab__item--call" href="tel:+917540086755" data-field-href="settings.sales_phone">
+        <span class="rc-fab__label">Call us</span>
+        <span class="rc-fab__icon" aria-hidden="true"><i class="bi bi-telephone"></i></span>
+      </a>
+    </li>
+  </ul>
+  <button type="button" class="rc-fab__toggle" aria-expanded="false" aria-controls="rcFabMenu" aria-label="Contact us" data-label-open="Contact us" data-label-close="Close contact options">
+    <span class="rc-fab__swap" aria-hidden="true">
+      <i class="bi bi-chat-dots-fill"></i>
+      <i class="bi bi-x-lg"></i>
+    </span>
+  </button>
+</div>
+<!-- Vendor JS (Bootstrap bundle includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+<!-- Hero slider -->
+<!-- Smooth (inertia) scrolling -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" defer></script>
+<!-- App JS -->
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
