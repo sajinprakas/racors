@@ -267,7 +267,11 @@ img { max-width: 100%; height: auto; }
 .rc-tabs--sm .rc-tab { padding: 8px 20px; }
 
 /* Responsive */
-@media (max-width: 767.98px) { .rc-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; } }
+@media (max-width: 767.98px) {
+  .rc-tabs { flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; padding-bottom: 4px; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+  .rc-tabs::-webkit-scrollbar { display: none; }
+  .rc-tabs > * { flex: 0 0 auto; }
+}
 
 /* ==========================================================
    COMPONENTS / Check List
@@ -333,9 +337,11 @@ img { max-width: 100%; height: auto; }
 
 /* Responsive */
 @media (max-width: 991.98px) {
-  .rc-testimonials { padding: 0; text-align: center; }
+  .rc-testimonials { padding: 0 0 60px; text-align: center; }
   .rc-testimonials__track { grid-auto-columns: 85%; text-align: left; }
-  .rc-round-btn { position: static; transform: none; display: inline-grid; margin-top: 20px; }
+  .rc-round-btn { top: auto; bottom: 0; transform: none; }
+  .rc-round-btn--prev { left: calc(50% - 46px); }
+  .rc-round-btn--next { right: calc(50% - 46px); }
 }
 @media (max-width: 767.98px) {
   .rc-testimonials__track { grid-auto-columns: 100%; }
