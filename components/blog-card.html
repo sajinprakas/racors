@@ -1,0 +1,13 @@
+<!-- Blog listing card. DYNAMIC: url, image, published_at, title, excerpt. -->
+<article class="rc-blog" data-item>
+  <a class="rc-blog__media" href="{{url}}" tabindex="-1" aria-hidden="true" data-field-href="url">
+    <img src="{{image}}" alt="" width="640" height="400" loading="lazy" data-field-src="image">
+  </a>
+  <div class="rc-blog__body">
+    <time class="rc-blog__date" datetime="{{published_at}}" data-field="published_at">{{published_at}}</time>
+    <h3 class="rc-blog__title">
+      <a class="stretched-link" href="{{url}}" data-field="title" data-field-href="url">{{title}}</a>
+    </h3>
+    <p class="rc-blog__excerpt" data-field="excerpt">{{excerpt}}</p>
+  </div>
+</article>
