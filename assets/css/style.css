@@ -629,16 +629,26 @@ html.lenis { scroll-behavior: auto; } /* Lenis animates the scroll – disable n
   transition: transform .8s cubic-bezier(.76, 0, .24, 1), visibility 0s linear .8s;
 }
 .no-js .rc-preloader { display: none; }
-.rc-preloader__inner { display: grid; justify-items: center; gap: 22px; transition: opacity .3s, transform .4s; }
-.rc-preloader__logo { height: 52px; width: auto; animation: rc-loader-pulse 1.6s ease-in-out infinite; }
-.rc-preloader__bar { width: 180px; height: 2px; background: rgba(255,255,255,.25); border-radius: 2px; overflow: hidden; }
-.rc-preloader__bar span { display: block; height: 100%; width: 0; background: #fff; border-radius: inherit; transition: width .35s ease; }
+.rc-preloader__inner { display: grid; justify-items: center; gap: 0; transition: opacity .3s, transform .4s; }
+.rc-preloader__logo-wrap { position: relative; display: block; width: 168px; }
+.rc-preloader__logo { display: block; width: 100%; height: auto; }
+.rc-preloader__logo--base { opacity: .2; }
+.rc-preloader__logo--draw, .rc-preloader__logo--finish {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+}
+.rc-preloader__logo--draw {
+  clip-path: inset(0 100% 0 0);
+  animation: rc-preloader-logo-draw 2.35s ease forwards;
+}
+.rc-preloader__logo--finish {
+  opacity: 0; animation: rc-preloader-logo-finish .25s ease 2.35s forwards;
+}
+@keyframes rc-preloader-logo-draw { to { clip-path: inset(0); } }
+@keyframes rc-preloader-logo-finish { to { opacity: 1; } }
 
 html.is-loading, html.is-loading body { overflow: hidden; }
 html.is-loaded .rc-preloader { transform: translateY(-100%); visibility: hidden; }
 html.is-loaded .rc-preloader__inner { opacity: 0; transform: translateY(-20px); }
-
-@keyframes rc-loader-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .75; transform: scale(.97); } }
 
 /* ==========================================================
    MOTION / Hero entrance (runs when the loader leaves)
@@ -661,7 +671,8 @@ html.is-loaded .rc-preloader__inner { opacity: 0; transform: translateY(-20px); 
 @media (prefers-reduced-motion: reduce) {
   .rc-preloader { transition: opacity .2s, visibility 0s linear .2s; }
   html.is-loaded .rc-preloader { transform: none; opacity: 0; }
-  .rc-preloader__logo { animation: none; }
+  .rc-preloader__logo--draw { animation: none; clip-path: none; }
+  .rc-preloader__logo--finish { animation: none; opacity: 1; }
   .js .rc-hero__content, .js .rc-hero-controls { opacity: 1; transform: none; }
   .rc-hero-slide__img { transform: none !important; transition: none; }
 }

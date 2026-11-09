@@ -34,8 +34,11 @@
      Hidden automatically without JavaScript. -->
 <div class="rc-preloader" id="rcPreloader" role="status" aria-live="polite">
   <div class="rc-preloader__inner">
-    <img src="assets/images/logo-white.png" alt="" width="186" height="59" class="rc-preloader__logo">
-    <div class="rc-preloader__bar" aria-hidden="true"><span id="rcPreloaderBar"></span></div>
+    <span class="rc-preloader__logo-wrap" aria-hidden="true">
+      <img src="assets/images/logo-white.png" alt="" width="186" height="59" class="rc-preloader__logo rc-preloader__logo--base">
+      <img src="assets/images/logo-draw.svg" alt="" width="700" height="260" class="rc-preloader__logo rc-preloader__logo--draw">
+      <img src="assets/images/logo-white.png" alt="" width="186" height="59" class="rc-preloader__logo rc-preloader__logo--finish">
+    </span>
     <span class="visually-hidden">Loading…</span>
   </div>
 </div>

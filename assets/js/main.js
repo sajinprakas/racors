@@ -4,7 +4,7 @@
    block at the end runs them all.
    ========================================================== */
 
-/* Page loader: progress bar follows image loading; slides away on window load.
+/* Page loader: waits for window load and lets the logo-fill animation finish.
    Sets html.is-loaded (starts the hero entrance). Safety timeout: 5s. */
 (function () {
   "use strict";
@@ -13,18 +13,14 @@
   if (!loader) return;
   root.classList.add("is-loading");
 
-  var bar = document.getElementById("rcPreloaderBar");
   var start = Date.now();
-  var MIN_SHOW = 600;   // ms – avoids a flash on fast connections
+  var MIN_SHOW = 2800;
   var MAX_WAIT = 5000;  // ms – never block the page longer than this
   var done = false;
-
-  function setProgress(p) { if (bar) bar.style.width = Math.min(100, Math.round(p)) + "%"; }
 
   function finish() {
     if (done) return;
     done = true;
-    setProgress(100);
     setTimeout(function () {
       root.classList.remove("is-loading");
       root.classList.add("is-loaded");
@@ -33,18 +29,6 @@
       document.dispatchEvent(new CustomEvent("racors:loaded"));
     }, Math.max(0, MIN_SHOW - (Date.now() - start)));
   }
-
-  // Track eager images (lazy ones load later and shouldn't hold the loader)
-  document.addEventListener("DOMContentLoaded", function () {
-    var imgs = Array.prototype.filter.call(document.images, function (i) { return i.loading !== "lazy"; });
-    var total = imgs.length + 1, loaded = 1; // +1 = DOM ready
-    function tick() { loaded++; setProgress((loaded / total) * 90); }
-    setProgress((loaded / total) * 90);
-    imgs.forEach(function (img) {
-      if (img.complete) tick();
-      else { img.addEventListener("load", tick, { once: true }); img.addEventListener("error", tick, { once: true }); }
-    });
-  });
 
   if (document.readyState === "complete") finish();
   else window.addEventListener("load", finish);
