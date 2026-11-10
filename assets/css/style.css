@@ -624,13 +624,25 @@ html.lenis { scroll-behavior: auto; } /* Lenis animates the scroll – disable n
    ========================================================== */
 
 .rc-preloader {
-  position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center;
-  background: var(--rc-primary); color: #fff;
+  position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; overflow: hidden;
+  background: #111; color: #fff;
   transition: transform .8s cubic-bezier(.76, 0, .24, 1), visibility 0s linear .8s;
 }
+.rc-preloader::before, .rc-preloader::after {
+  position: absolute; inset: 0; z-index: 0; content: ""; pointer-events: none;
+  background: linear-gradient(125deg, transparent 24%, rgba(11, 99, 229, .08) 24% 54%, transparent 54%);
+  transform: translateX(-105%); animation: rc-preloader-panel-in 1.2s cubic-bezier(.76, 0, .24, 1) forwards;
+}
+.rc-preloader::after {
+  background: linear-gradient(125deg, transparent 46%, rgba(8, 75, 176, .12) 46% 76%, transparent 76%);
+  transform: translateX(105%); animation-delay: .12s;
+}
 .no-js .rc-preloader { display: none; }
-.rc-preloader__inner { display: grid; justify-items: center; gap: 0; transition: opacity .3s, transform .4s; }
-.rc-preloader__logo-wrap { position: relative; display: block; width: 168px; }
+.rc-preloader__inner {
+  position: relative; z-index: 1; display: grid; justify-items: center; gap: 20px;
+  transition: opacity .3s, transform .4s;
+}
+.rc-preloader__logo-wrap { position: relative; display: block; width: 140px; }
 .rc-preloader__logo { display: block; width: 100%; height: auto; }
 .rc-preloader__logo--base { opacity: .2; }
 .rc-preloader__logo--draw, .rc-preloader__logo--finish {
@@ -645,6 +657,11 @@ html.lenis { scroll-behavior: auto; } /* Lenis animates the scroll – disable n
 }
 @keyframes rc-preloader-logo-draw { to { clip-path: inset(0); } }
 @keyframes rc-preloader-logo-finish { to { opacity: 1; } }
+@keyframes rc-preloader-panel-in { to { transform: translateX(0); } }
+.rc-preloader__logo-wrap::after {
+  position: absolute; top: calc(100% + 10px); left: 50%; width: 44px; height: 3px;
+  background: var(--rc-primary); content: ""; transform: translateX(-50%);
+}
 
 html.is-loading, html.is-loading body { overflow: hidden; }
 html.is-loaded .rc-preloader { transform: translateY(-100%); visibility: hidden; }
@@ -671,6 +688,7 @@ html.is-loaded .rc-preloader__inner { opacity: 0; transform: translateY(-20px); 
 @media (prefers-reduced-motion: reduce) {
   .rc-preloader { transition: opacity .2s, visibility 0s linear .2s; }
   html.is-loaded .rc-preloader { transform: none; opacity: 0; }
+  .rc-preloader::before, .rc-preloader::after { animation: none; transform: none; }
   .rc-preloader__logo--draw { animation: none; clip-path: none; }
   .rc-preloader__logo--finish { animation: none; opacity: 1; }
   .js .rc-hero__content, .js .rc-hero-controls { opacity: 1; transform: none; }
